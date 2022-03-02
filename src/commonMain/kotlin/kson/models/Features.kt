@@ -2,9 +2,6 @@ package kson.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kson.APIReference
-import kson.Choice
-import kson.DefaultTrait
 
 @Serializable
 data class Features(

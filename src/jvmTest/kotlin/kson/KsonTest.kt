@@ -4,6 +4,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import kson.models.Monsters
 import kson.models.AbilityScores
+import kson.models.names
 import kotlin.test.Test
 import kotlin.test.assertFails
 
@@ -24,30 +25,22 @@ class MonsterTests {
         for (monster in monsters) {
 
             val mon = api.fetch<Monsters>(monster)
-            println(
-                """
+            println("""
                 Name: ${mon.name}
                 CR: ${mon.challenge_rating}
                 Form: ${mon.forms?.names()}
             """.trimIndent()
             )
         }
-
         println(api.query<Monsters>(""))
     }
 
     @Test
     fun monsterCRTest() = runTest {
         val mon = api.query<Monsters>(Queryable.Monsters.challengeRating(0.25,1.0))
-        val results = mon.results
+        val results = mon.results.names().replace(",","\n")
         println(mon.count)
-        results.forEach {
-            println(
-                """
-                Name: ${it.name}
-            """.trimIndent()
-            )
-        }
+        println(results)
     }
 }
 

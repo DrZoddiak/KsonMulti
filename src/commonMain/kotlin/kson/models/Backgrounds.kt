@@ -1,9 +1,6 @@
 package kson.models
 
 import kotlinx.serialization.Serializable
-import kson.APIReference
-import kson.DefaultTrait
-import kson.Options
 
 @Serializable
 data class Backgrounds(

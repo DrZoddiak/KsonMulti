@@ -10,7 +10,7 @@ private val api = KsonApi(client)
 @OptIn(ExperimentalCoroutinesApi::class)
 class EquipmentTest {
 
-    val equipment = listOf(
+    private val equipment = listOf(
         "blowgun",
         "javelin",
         "longsword",

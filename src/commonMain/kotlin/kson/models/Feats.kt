@@ -2,7 +2,6 @@ package kson.models
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonObject
-import kson.DefaultTrait
 
 @Serializable
 data class Feats(

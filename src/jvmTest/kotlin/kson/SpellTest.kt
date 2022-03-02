@@ -2,8 +2,8 @@ package kson
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-import kson.models.Equipment
 import kson.models.Spells
+import kson.models.names
 import kotlin.test.Test
 
 private val api = KsonApi(client)

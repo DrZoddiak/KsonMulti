@@ -1,7 +1,6 @@
 package kson.models
 
 import kotlinx.serialization.Serializable
-import kson.APIReference
 
 @Serializable
 data class Subclasses(

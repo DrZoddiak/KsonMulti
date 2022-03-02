@@ -2,9 +2,6 @@ package kson.models
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonObject
-import kson.APIReference
-import kson.Cost
-import kson.DefaultTrait
 
 
 object Equipment {

@@ -2,8 +2,6 @@ package kson.models
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonObject
-import kson.APIReference
-import kson.DefaultTrait
 
 @Serializable
 class Spells(

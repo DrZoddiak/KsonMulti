@@ -1,7 +1,6 @@
 package kson.models
 
 import kotlinx.serialization.Serializable
-import kson.DefaultTrait
 
 @Serializable
 data class Languages(
