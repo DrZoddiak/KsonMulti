@@ -7,8 +7,11 @@ import kotlin.reflect.KClass
 
 class KsonApi(val client: HttpClient, val apiUrl: String = "https://www.dnd5eapi.co/api") {
 
-    private val subCategories = listOf("weapons", "armor", "gear", "EquipmentPack")
-    private val friendlyName = "equipment"
+    /*
+    * These are all sub-categories of equipment
+    * They all fall under the equipment umbrella, but have different information
+     */
+
 
     suspend inline fun <reified T> fetch(input: String): T {
         val name = T::class.friendlyName()
@@ -20,11 +23,16 @@ class KsonApi(val client: HttpClient, val apiUrl: String = "https://www.dnd5eapi
         return client.get("$apiUrl/$name?${input.lowercase()}")
     }
 
-    fun KClass<*>.friendlyName(): String? {
-        val simpleName = this.simpleName
-        if (subCategories.contains(simpleName?.lowercase())) {
-            return friendlyName
-        }
-        return simpleName?.replace(Regex("(?<=.)([A-Z])"), "-$1")
+
+}
+
+fun KClass<*>.friendlyName(): String? {
+    val subCategories = listOf("weapons", "armor", "gear", "EquipmentPack")
+    val friendlyName = "equipment"
+
+    val simpleName = this.simpleName
+    if (subCategories.contains(simpleName?.lowercase())) {
+        return friendlyName
     }
+    return simpleName?.replace(Regex("(?<=.)([A-Z])"), "-$1")
 }

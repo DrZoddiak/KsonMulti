@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "me.zodd"
-version = "1.1.0"
+version = "1.2.0"
 
 val mavenPublishingUrl = "https://repo.zodd.me/releases"
 
@@ -33,10 +33,6 @@ kotlin {
         nodejs()
         useCommonJs()
     }
-
-
-    val publicationsFromMainHost =
-        listOf(jvm(), js()).map { it.name } + "kotlinMultiplatform"
 
     afterEvaluate {
         configure<PublishingExtension>() {

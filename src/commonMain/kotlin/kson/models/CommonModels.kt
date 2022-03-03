@@ -1,14 +1,20 @@
 package kson.models
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-@SerialName("")
 data class DefaultRequest(
     var count: Int,
     var results: List<APIReference>
-)
+) {
+    override fun toString(): String {
+        val map = mapOf(
+            Pair("count", count),
+            Pair("results", results)
+        )
+        return map.joinEntries()
+    }
+}
 
 @Serializable
 class APIReference(
@@ -22,23 +28,9 @@ class APIReference(
             Pair("name", name),
             Pair("url", url)
         )
-        //Shamelessly stolen (and modified) from JsonObject.
-        return map.entries.joinToString(
-            separator = ",",
-            prefix = "{",
-            postfix = "}",
-            transform = { (k, v) ->
-                buildString {
-                    append("\"$k\"")
-                    append(':')
-                    append("\"$v\"")
-                }
-            }
-        )
+        return map.joinEntries()
     }
 }
-
-fun List<APIReference>.names() = this.joinToString(",") { it.name }
 
 @Serializable
 data class Choice(
@@ -53,6 +45,8 @@ data class Cost(
     val unit: String
 )
 
+//Interfaces
+
 interface DefaultTrait {
     val index: String
     val name: String
@@ -64,3 +58,26 @@ interface Options {
     val type: String
     val from: Collection<*>
 }
+
+interface GameMechanics : DefaultTrait {
+    override val index: String
+    override val name: String
+    val desc: List<String>
+    override val url: String
+}
+
+//Extension Functions
+fun List<APIReference>.names() = this.joinToString(",") { it.name }
+
+fun Map<String, Any?>.joinEntries() = this.entries.joinToString(
+    ",",
+    "{",
+    "}",
+    transform = { (k, v) ->
+        buildString {
+            append("\"$k\"")
+            append(':')
+            append("\"$v\"")
+        }
+    }
+)

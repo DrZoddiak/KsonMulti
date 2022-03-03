@@ -19,7 +19,25 @@ object Equipment {
         val weight: Int,
         val properties: List<JsonObject>,
         override val url: String
-    ) : DefaultTrait
+    ) : DefaultTrait {
+        override fun toString(): String {
+            val map = mapOf(
+                Pair("index", index),
+                Pair("name", name),
+                Pair("equipment_category", equipment_category),
+                Pair("weapon_category", weapon_category),
+                Pair("weapon_range", weapon_range),
+                Pair("cost", cost),
+                Pair("damage", damage),
+                Pair("two_handed_damage", two_handed_damage),
+                Pair("range", range),
+                Pair("weight", weight),
+                Pair("properties", properties),
+                Pair("url", url)
+            )
+            return map.joinEntries()
+        }
+    }
 
     @Serializable
     data class Armor(
@@ -30,7 +48,20 @@ object Equipment {
         val cost: Cost,
         val weight: Int,
         override val url: String
-    ) : DefaultTrait
+    ) : DefaultTrait {
+        override fun toString(): String {
+            val map = mapOf(
+                Pair("index", index),
+                Pair("name", name),
+                Pair("equipment_category", equipment_category),
+                Pair("gear_category", gear_category),
+                Pair("cost", cost),
+                Pair("weight", weight),
+                Pair("url", url)
+            )
+            return map.joinEntries()
+        }
+    }
 
     @Serializable
     data class EquipmentPack(
@@ -41,7 +72,20 @@ object Equipment {
         val cost: Cost,
         val contents: List<APIReference>,
         override val url: String
-    ) : DefaultTrait
+    ) : DefaultTrait {
+        override fun toString(): String {
+            val map = mapOf(
+                Pair("index", index),
+                Pair("name", name),
+                Pair("equipment_category", equipment_category),
+                Pair("gear_category", gear_category),
+                Pair("cost", cost),
+                Pair("contents", contents),
+                Pair("url", url)
+            )
+            return map.joinEntries()
+        }
+    }
 
     @Serializable
     data class Gear(
@@ -52,5 +96,18 @@ object Equipment {
         val cost: Cost,
         val weight: Int,
         override val url: String
-    ) : DefaultTrait
+    ) : DefaultTrait {
+        override fun toString(): String {
+            val map = mapOf(
+                Pair("index", index),
+                Pair("name", name),
+                Pair("equipment_category", equipment_category),
+                Pair("gear_category", gear_category),
+                Pair("cost", cost),
+                Pair("weight", weight),
+                Pair("url", url)
+            )
+            return map.joinEntries()
+        }
+    }
 }

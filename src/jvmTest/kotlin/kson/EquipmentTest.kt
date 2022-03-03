@@ -3,12 +3,14 @@ package kson
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import kson.models.Equipment
+import kson.models.Monsters
 import kotlin.test.Test
 
-private val api = KsonApi(client)
+
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class EquipmentTest {
+    private val api = KsonApi(client)
 
     private val equipment = listOf(
         "blowgun",
