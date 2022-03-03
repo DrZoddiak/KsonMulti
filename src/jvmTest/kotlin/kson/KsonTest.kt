@@ -4,7 +4,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import kson.models.Monsters
 import kson.models.AbilityScores
-import kson.models.names
 import kotlin.test.Test
 import kotlin.test.assertFails
 
@@ -29,6 +28,7 @@ class MonsterTests {
                 Name: ${mon.name}
                 CR: ${mon.challenge_rating}
                 Form: ${mon.forms?.names()}
+                Attack : ${mon.actions?.names()}
             """.trimIndent()
             )
         }

@@ -38,11 +38,11 @@ data class Monsters(
 
 @Serializable
 data class Weapons(
-    val name: String,
+    override val name: String,
     val desc: String,
     val attack_bonus: Int? = null,
     val damage: List<JsonObject>
-)
+) : Nameable
 
 @Serializable
 data class ProficienciesOptions(

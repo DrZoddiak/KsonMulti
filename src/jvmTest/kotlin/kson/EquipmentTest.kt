@@ -24,7 +24,6 @@ class EquipmentTest {
             val equip = api.fetch<Equipment.Weapons>(item)
             println(
                 """
-                    $equip
                     
                     Name: ${equip.name}
                     Something : ${equip.equipment_category}

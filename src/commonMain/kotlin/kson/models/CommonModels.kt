@@ -1,6 +1,7 @@
 package kson.models
 
 import kotlinx.serialization.Serializable
+import kson.joinEntries
 
 @Serializable
 data class DefaultRequest(
@@ -47,9 +48,9 @@ data class Cost(
 
 //Interfaces
 
-interface DefaultTrait {
+interface DefaultTrait : Nameable {
     val index: String
-    val name: String
+    override val name: String
     val url: String
 }
 
@@ -66,22 +67,6 @@ interface GameMechanics : DefaultTrait {
     override val url: String
 }
 
-//Extension Functions
-fun List<APIReference>.names() = this.joinToString(",") { it.name }
-fun List<Equipment.Weapons>.names() = this.joinToString(",") { it.name }
-fun List<Equipment.EquipmentPack>.names() = this.joinToString(",") { it.name }
-fun List<Equipment.Gear>.names() = this.joinToString(",") { it.name }
-fun List<Equipment.Armor>.names() = this.joinToString(",") { it.name }
-
-fun Map<String, Any?>.joinEntries() = this.entries.joinToString(
-    ",",
-    "{",
-    "}",
-    transform = { (k, v) ->
-        buildString {
-            append("\"$k\"")
-            append(':')
-            append("\"$v\"")
-        }
-    }
-)
+interface Nameable {
+    val name : String
+}

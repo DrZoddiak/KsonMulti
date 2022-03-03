@@ -3,6 +3,7 @@ package kson
 import io.ktor.client.*
 import io.ktor.client.request.*
 import kson.models.DefaultRequest
+import kson.models.Nameable
 import kotlin.reflect.KClass
 
 class KsonApi(val client: HttpClient, val apiUrl: String = "https://www.dnd5eapi.co/api") {
@@ -22,8 +23,6 @@ class KsonApi(val client: HttpClient, val apiUrl: String = "https://www.dnd5eapi
         val name = T::class.friendlyName()
         return client.get("$apiUrl/$name?${input.lowercase()}")
     }
-
-
 }
 
 fun KClass<*>.friendlyName(): String? {
@@ -36,3 +35,23 @@ fun KClass<*>.friendlyName(): String? {
     }
     return simpleName?.replace(Regex("(?<=.)([A-Z])"), "-$1")
 }
+
+//Extension Functions
+
+fun List<Any>.names() = this.joinToString(", ") {
+    it as Nameable
+    it.name
+}
+
+fun Map<String, Any?>.joinEntries() = this.entries.joinToString(
+    ",",
+    "{",
+    "}",
+    transform = { (k, v) ->
+        buildString {
+            append("\"$k\"")
+            append(':')
+            append("\"$v\"")
+        }
+    }
+)
