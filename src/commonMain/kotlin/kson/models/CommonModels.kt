@@ -68,6 +68,10 @@ interface GameMechanics : DefaultTrait {
 
 //Extension Functions
 fun List<APIReference>.names() = this.joinToString(",") { it.name }
+fun List<Equipment.Weapons>.names() = this.joinToString(",") { it.name }
+fun List<Equipment.EquipmentPack>.names() = this.joinToString(",") { it.name }
+fun List<Equipment.Gear>.names() = this.joinToString(",") { it.name }
+fun List<Equipment.Armor>.names() = this.joinToString(",") { it.name }
 
 fun Map<String, Any?>.joinEntries() = this.entries.joinToString(
     ",",
