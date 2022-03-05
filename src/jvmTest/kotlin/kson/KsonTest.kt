@@ -2,8 +2,8 @@ package kson
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-import kson.models.Monsters
 import kson.models.AbilityScores
+import kson.models.Monsters
 import kotlin.test.Test
 import kotlin.test.assertFails
 
@@ -24,11 +24,14 @@ class MonsterTests {
         for (monster in monsters) {
 
             val mon = api.fetch<Monsters>(monster)
-            println("""
+            println(
+                """
                 Name: ${mon.name}
                 CR: ${mon.challenge_rating}
                 Form: ${mon.forms?.names()}
                 Attack : ${mon.actions?.names()}
+                
+                $mon
             """.trimIndent()
             )
         }

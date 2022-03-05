@@ -1,6 +1,8 @@
 package kson.models
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 @Serializable
 data class Proficiencies(
@@ -11,7 +13,11 @@ data class Proficiencies(
     val races: List<String>,
     override val url: String,
     val references: List<APIReference>
-) : DefaultTrait
+) : DefaultTrait {
+    override fun toString(): String {
+        return Json.encodeToString(this)
+    }
+}
 
 @Serializable
 data class References(
@@ -19,4 +25,8 @@ data class References(
     override val index: String,
     val type: String,
     override val url: String
-) : DefaultTrait
+) : DefaultTrait {
+    override fun toString(): String {
+        return Json.encodeToString(this)
+    }
+}

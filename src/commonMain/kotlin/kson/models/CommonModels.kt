@@ -1,7 +1,8 @@
 package kson.models
 
 import kotlinx.serialization.Serializable
-import kson.joinEntries
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 @Serializable
 data class DefaultRequest(
@@ -9,11 +10,7 @@ data class DefaultRequest(
     var results: List<APIReference>
 ) {
     override fun toString(): String {
-        val map = mapOf(
-            Pair("count", count),
-            Pair("results", results)
-        )
-        return map.joinEntries()
+        return Json.encodeToString(this)
     }
 }
 
@@ -24,12 +21,7 @@ class APIReference(
     override val url: String
 ) : DefaultTrait {
     override fun toString(): String {
-        val map = mapOf(
-            Pair("index", index),
-            Pair("name", name),
-            Pair("url", url)
-        )
-        return map.joinEntries()
+        return Json.encodeToString(this)
     }
 }
 
@@ -38,13 +30,21 @@ data class Choice(
     val choose: Int,
     val type: String,
     val from: List<APIReference>
-)
+) {
+    override fun toString(): String {
+        return Json.encodeToString(this)
+    }
+}
 
 @Serializable
 data class Cost(
     val quantity: Int,
     val unit: String
-)
+) {
+    override fun toString(): String {
+        return Json.encodeToString(this)
+    }
+}
 
 //Interfaces
 

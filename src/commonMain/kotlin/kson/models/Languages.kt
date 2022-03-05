@@ -1,6 +1,8 @@
 package kson.models
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 @Serializable
 data class Languages(
@@ -10,4 +12,8 @@ data class Languages(
     val typical_speakers: List<String>,
     val script: String,
     override val url: String
-) : DefaultTrait
+) : DefaultTrait {
+    override fun toString(): String {
+        return Json.encodeToString(this)
+    }
+}

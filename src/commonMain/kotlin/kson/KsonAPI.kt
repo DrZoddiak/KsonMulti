@@ -8,12 +8,6 @@ import kotlin.reflect.KClass
 
 class KsonApi(val client: HttpClient, val apiUrl: String = "https://www.dnd5eapi.co/api") {
 
-    /*
-    * These are all sub-categories of equipment
-    * They all fall under the equipment umbrella, but have different information
-     */
-
-
     suspend inline fun <reified T> fetch(input: String): T {
         val name = T::class.friendlyName()
         return client.get("$apiUrl/$name/${input.lowercase()}")
@@ -42,16 +36,3 @@ fun List<Any>.names() = this.joinToString(", ") {
     it as Nameable
     it.name
 }
-
-fun Map<String, Any?>.joinEntries() = this.entries.joinToString(
-    ",",
-    "{",
-    "}",
-    transform = { (k, v) ->
-        buildString {
-            append("\"$k\"")
-            append(':')
-            append("\"$v\"")
-        }
-    }
-)

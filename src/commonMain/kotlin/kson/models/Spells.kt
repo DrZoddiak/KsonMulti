@@ -1,6 +1,8 @@
 package kson.models
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 
 @Serializable
@@ -17,11 +19,15 @@ class Spells(
     val concentration: Boolean,
     val casting_time: String,
     val level: Int,
-    val attack_type : String? = null,
-    val damage : JsonObject? = null,
+    val attack_type: String? = null,
+    val damage: JsonObject? = null,
     val school: APIReference,
     val classes: List<APIReference>,
     val subclasses: List<APIReference>,
     override val url: String
-) : DefaultTrait
+) : DefaultTrait {
+    override fun toString(): String {
+        return Json.encodeToString(this)
+    }
+}
 

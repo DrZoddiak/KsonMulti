@@ -1,6 +1,8 @@
 package kson.models
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 
 @Serializable
@@ -14,12 +16,20 @@ data class Traits(
     val proficiency_choices: Choice,
     val trait_specific: TraitSpecific,
     override val url: String
-) : DefaultTrait
+) : DefaultTrait {
+    override fun toString(): String {
+        return Json.encodeToString(this)
+    }
+}
 
 @Serializable
 data class TraitSpecific(
-    val subtrait_options : Choice,
-    val spell_options : Choice,
-    val damage_type : APIReference,
-    val breath_weapon : JsonObject
-)
+    val subtrait_options: Choice,
+    val spell_options: Choice,
+    val damage_type: APIReference,
+    val breath_weapon: JsonObject
+) {
+    override fun toString(): String {
+        return Json.encodeToString(this)
+    }
+}

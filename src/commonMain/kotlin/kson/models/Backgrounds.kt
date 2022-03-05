@@ -1,6 +1,8 @@
 package kson.models
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 @Serializable
 data class Backgrounds(
@@ -17,44 +19,72 @@ data class Backgrounds(
     val flaws: TextList,
     override val url: String
 
-) : DefaultTrait
+) : DefaultTrait {
+    override fun toString(): String {
+        return Json.encodeToString(this)
+    }
+}
 
 @Serializable
 data class BackgroundOptions(
     override val choose: String,
     override val type: String,
     override val from: List<APIReference>,
-) : Options
+) : Options {
+    override fun toString(): String {
+        return Json.encodeToString(this)
+    }
+}
 
 @Serializable
 data class IdealsOptions(
     override val choose: String,
     override val type: String,
     override val from: List<IdealsFrom>
-) : Options
+) : Options {
+    override fun toString(): String {
+        return Json.encodeToString(this)
+    }
+}
 
 @Serializable
 data class TextList(
     override val choose: String,
     override val type: String,
     override val from: List<String>
-) : Options
+) : Options {
+    override fun toString(): String {
+        return Json.encodeToString(this)
+    }
+}
 
 @Serializable
 data class IdealsFrom(
     val desc: String,
     val alignments: List<APIReference>
-)
+) {
+    override fun toString(): String {
+        return Json.encodeToString(this)
+    }
+}
 
 @Serializable
 data class EquipmentContent(
     val equipment: List<APIReference>,
     val quantity: String
-)
+) {
+    override fun toString(): String {
+        return Json.encodeToString(this)
+    }
+}
 
 @Serializable
 data class Feature(
     val name: String,
     val desc: List<String>
-)
+) {
+    override fun toString(): String {
+        return Json.encodeToString(this)
+    }
+}
 

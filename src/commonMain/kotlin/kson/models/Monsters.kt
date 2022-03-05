@@ -1,8 +1,11 @@
 package kson.models
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 
+//TODO: Add formatting for data classes.
 @Serializable
 data class Monsters(
     override val index: String,
@@ -34,7 +37,11 @@ data class Monsters(
     val actions: List<Weapons>? = null,
     val legendary_actions: List<JsonObject>? = null,
     override val url: String
-) : DefaultTrait
+) : DefaultTrait {
+    override fun toString(): String {
+        return Json.encodeToString(this)
+    }
+}
 
 @Serializable
 data class Weapons(
@@ -42,10 +49,18 @@ data class Weapons(
     val desc: String,
     val attack_bonus: Int? = null,
     val damage: List<JsonObject>
-) : Nameable
+) : Nameable {
+    override fun toString(): String {
+        return Json.encodeToString(this)
+    }
+}
 
 @Serializable
 data class ProficienciesOptions(
     val proficiency: APIReference,
     val value: Int
-)
+) {
+    override fun toString(): String {
+        return Json.encodeToString(this)
+    }
+}
