@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "me.zodd"
-version = "1.3.0"
+version = "1.4.0"
 
 val mavenPublishingUrl = "https://repo.zodd.me/releases"
 
