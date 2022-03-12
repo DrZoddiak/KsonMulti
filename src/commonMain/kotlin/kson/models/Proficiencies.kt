@@ -10,9 +10,9 @@ data class Proficiencies(
     val type: String,
     override val name: String,
     val classes: List<APIReference>,
-    val races: List<String>,
+    val races: List<APIReference>,
     override val url: String,
-    val references: List<APIReference>
+    val reference: References
 ) : DefaultTrait {
     override fun toString(): String {
         return Json.encodeToString(this)
@@ -23,7 +23,7 @@ data class Proficiencies(
 data class References(
     override val name: String,
     override val index: String,
-    val type: String,
+    val type: String? = null,
     override val url: String
 ) : DefaultTrait {
     override fun toString(): String {

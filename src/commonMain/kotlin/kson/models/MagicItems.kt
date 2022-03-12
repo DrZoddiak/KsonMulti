@@ -6,11 +6,12 @@ import kotlinx.serialization.json.Json
 
 @Serializable
 data class MagicItems(
-    val index: String,
-    val name: String,
-    val equipmentCategory: APIReference,
-    val desc: List<String>
-) {
+    override val index: String,
+    override val name: String,
+    val equipmentCategory: APIReference? = null,
+    val desc: List<String>,
+    override val url: String
+) : DefaultTrait {
     override fun toString(): String {
         return Json.encodeToString(this)
     }

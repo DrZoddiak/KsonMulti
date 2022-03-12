@@ -1,24 +1,26 @@
 package kson.models
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 
 @Serializable
+@SerialName("Class")
 data class Classes(
     override val index: String,
     override val name: String,
     val hit_die: Int,
-    val proficiency_choices: List<ProficiencyChoices>,
+    val proficiency_choices: List<ProficiencyChoice>,
     val proficiencies: List<APIReference>,
     val saving_throws: List<APIReference>,
-    val starting_equipment: JsonObject,
+    val starting_equipment: List<EquipmentContent>,
     val class_levels: String,
-    val multi_classing: JsonObject,
+    val multi_classing: MultiClassing,
     val subclasses: List<APIReference>,
     val spellcasting: Spellcasting,
-    val spells: String,
+    val spells: String? = null,
     override val url: String
 ) : DefaultTrait {
     override fun toString(): String {
@@ -27,7 +29,28 @@ data class Classes(
 }
 
 @Serializable
-data class ProficiencyChoices(
+data class MultiClassing(
+    val prerequisites: List<MultiClassingPreReq>,
+    val prerequisite_options: MultiClassingPreReqOptions,
+    val proficiencies: List<APIReference>,
+    val proficiency_choices: List<ProficiencyChoice>
+)
+
+@Serializable
+data class MultiClassingPreReqOptions(
+    val choose: Int? = null,
+    val from: List<MultiClassingPreReq>,
+    val type: String? = null
+)
+
+@Serializable
+data class MultiClassingPreReq(
+    val ability_score: APIReference,
+    val minimum_score: Int
+)
+
+@Serializable
+data class ProficiencyChoice(
     val choose: Int,
     val type: String,
     val from: List<APIReference>
@@ -39,8 +62,8 @@ data class ProficiencyChoices(
 
 @Serializable
 data class Spellcasting(
-    val level: Int,
-    val spellcasting_ability: APIReference,
+    val level: Int? = null,
+    val spellcasting_ability: APIReference? = null,
     val info: List<Info>
 ) {
     override fun toString(): String {

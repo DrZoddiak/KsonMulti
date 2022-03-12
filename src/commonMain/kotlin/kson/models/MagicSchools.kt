@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
 data class MagicSchools(
     override val index: String,
     override val name: String,
-    override val desc: List<String>,
+    override val desc: String,
     override val url: String
 ) : GameMechanics {
     override fun toString(): String {

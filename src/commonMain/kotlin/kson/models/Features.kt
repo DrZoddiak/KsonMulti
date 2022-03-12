@@ -12,9 +12,12 @@ data class Features(
     val level: Int,
     @SerialName("class") //Reserved word.
     val clazz: APIReference,
-    val subclass: APIReference,
+    val subclass: APIReference? = null,
     val desc: List<String>,
     val feature_specific: FeatureSpecific,
+    val parent: APIReference? = null,
+    val reference: String? = null,
+    val prerequisite: List<PrerequisiteFeature>? = null,
     override val url: String
 ) : DefaultTrait {
     override fun toString(): String {
@@ -24,10 +27,24 @@ data class Features(
 
 @Serializable
 data class FeatureSpecific(
-    val subfeature_options: Choice,
-    val expertise_options: Choice
+    val subfeature_options: FeatureChoice,
+    val expertise_options: FeatureChoice
 ) {
     override fun toString(): String {
         return Json.encodeToString(this)
     }
 }
+
+@Serializable
+data class FeatureChoice(
+    val choose : String? = null,
+    val from : List<APIReference>,
+    val type : String? = null
+)
+
+@Serializable
+@SerialName("Prerequisite")
+data class PrerequisiteFeature(
+    val level: Int,
+    val type: String
+)

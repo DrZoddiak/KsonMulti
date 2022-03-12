@@ -9,7 +9,7 @@ import kotlinx.serialization.json.JsonObject
 data class Feats(
     override val index: String,
     override val name: String,
-    val prerequisites: List<JsonObject>,
+    val prerequisites: List<Prerequisite>,
     val desc: List<String>,
     override val url: String
 ) : DefaultTrait {
@@ -17,3 +17,9 @@ data class Feats(
         return Json.encodeToString(this)
     }
 }
+
+@Serializable
+data class Prerequisite(
+    val ability_score: APIReference,
+    val minimum_score: Int
+)

@@ -5,12 +5,12 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 @Serializable
-data class DamageTypes( //Should work for damage-types as well
+data class DamageTypes(
     override val index: String,
     override val name: String,
-    override val desc: List<String>,
+    val desc: List<String>,
     override val url: String
-) : GameMechanics {
+) : DefaultTrait {
     override fun toString(): String {
         return Json.encodeToString(this)
     }

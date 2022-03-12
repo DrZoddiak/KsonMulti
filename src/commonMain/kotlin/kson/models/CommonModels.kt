@@ -48,8 +48,8 @@ data class Cost(
 
 //Interfaces
 
-interface DefaultTrait : Nameable {
-    val index: String
+interface DefaultTrait : Nameable, Indexable {
+    override val index: String
     override val name: String
     val url: String
 }
@@ -63,10 +63,14 @@ interface Options {
 interface GameMechanics : DefaultTrait {
     override val index: String
     override val name: String
-    val desc: List<String>
+    val desc: String
     override val url: String
 }
 
 interface Nameable {
-    val name : String
+    val name: String
+}
+
+interface Indexable {
+    val index: String
 }

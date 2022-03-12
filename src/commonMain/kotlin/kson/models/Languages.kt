@@ -8,9 +8,10 @@ import kotlinx.serialization.json.Json
 data class Languages(
     override val index: String,
     override val name: String,
+    val desc : String? = null,
     val type: String,
     val typical_speakers: List<String>,
-    val script: String,
+    val script: String? = null,
     override val url: String
 ) : DefaultTrait {
     override fun toString(): String {

@@ -5,15 +5,13 @@ plugins {
 }
 
 group = "me.zodd"
-version = "1.4.0"
+version = "1.6.1"
 
 val mavenPublishingUrl = "https://repo.zodd.me/releases"
 
 repositories {
     mavenCentral()
 }
-
-
 
 kotlin {
     jvm {
@@ -35,7 +33,7 @@ kotlin {
     }
 
     afterEvaluate {
-        configure<PublishingExtension>() {
+        configure<PublishingExtension> {
             val mavenPublication = this as? MavenPublication
             mavenPublication?.artifactId = "${project.name}${
                 "-$name".takeUnless {

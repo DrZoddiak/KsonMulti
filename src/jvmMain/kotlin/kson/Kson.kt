@@ -16,7 +16,7 @@ val client = HttpClient(CIO) {
     }
     engine {
         // this: CIOEngineConfig
-        maxConnectionsCount = 1000
+        maxConnectionsCount = 3000
         endpoint {
             // this: EndpointConfig
             maxConnectionsPerRoute = 100

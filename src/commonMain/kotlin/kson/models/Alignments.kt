@@ -9,7 +9,7 @@ data class Alignments(
     override val index: String,
     override val name: String,
     val abbreviation: String,
-    val desc: List<String>,
+    val desc: String,
     override val url: String
 ) : DefaultTrait {
     override fun toString(): String {

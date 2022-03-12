@@ -14,9 +14,3 @@ class Queryable {
         fun name(vararg string: String) = string.sortContent("name")
     }
 }
-
-//In-case I require these for the future.
-fun Array<out String>.sortContent(prefix: String) = "$prefix=${this.joinToString(",")}"
-fun IntArray.sortContent(prefix: String) = "$prefix=${this.joinToString(",")}"
-fun DoubleArray.sortContent(prefix: String) = "$prefix=${this.joinToString(",")}"
-
