@@ -245,9 +245,9 @@ data class ActionAttackOptions(
 
 @Serializable
 data class ActionOption(
-    val name: String,
-    val count: String,
-    val type: String
+    val name: String? = null,
+    val count: String? = null,
+    val type: String? = null
 ) {
     override fun toString(): String {
         return Json.encodeToString(this)
@@ -257,7 +257,7 @@ data class ActionOption(
 @Serializable
 data class ActionOptions(
     val choose: Int,
-    val from: List<List<ActionOption>>
+    val from: List<ActionOption>
 ) {
     override fun toString(): String {
         return Json.encodeToString(this)

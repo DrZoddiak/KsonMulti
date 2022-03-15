@@ -20,9 +20,9 @@ val client = HttpClient(CIO) {
         endpoint {
             // this: EndpointConfig
             maxConnectionsPerRoute = 100
-            pipelineMaxSize = 20
-            keepAliveTime = 5000
-            connectTimeout = 5000
+            pipelineMaxSize = 50
+            keepAliveTime = 10000
+            connectTimeout = 10000
             connectAttempts = 5
         }
     }

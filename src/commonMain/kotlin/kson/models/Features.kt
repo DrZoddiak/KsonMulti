@@ -14,7 +14,7 @@ data class Features(
     val clazz: APIReference,
     val subclass: APIReference? = null,
     val desc: List<String>,
-    val feature_specific: FeatureSpecific,
+    val feature_specific: FeatureSpecific? = null,
     val parent: APIReference? = null,
     val reference: String? = null,
     val prerequisite: List<PrerequisiteFeature>? = null,
@@ -27,8 +27,8 @@ data class Features(
 
 @Serializable
 data class FeatureSpecific(
-    val subfeature_options: FeatureChoice,
-    val expertise_options: FeatureChoice
+    val subfeature_options: FeatureChoice? = null,
+    val expertise_options: FeatureChoice? = null
 ) {
     override fun toString(): String {
         return Json.encodeToString(this)

@@ -7,7 +7,7 @@ data class Subraces(
     val ability_bonuses: List<AbilityBonus>,
     val desc: String,
     override val index: String,
-    val language_options: LanguageOption,
+    val language_options: LanguageOption? = null,
     override val name: String,
     val race: APIReference,
     val racial_traits: List<APIReference>,
@@ -23,7 +23,7 @@ data class AbilityBonus(
 
 @Serializable
 data class LanguageOption(
-    val choose: Int? = null,
+    val choose: Int,
     val from: List<APIReference>,
-    val type: String? = null
+    val type: String
 )

@@ -10,13 +10,13 @@ data class Races(
     override val name: String,
     val speed: Int,
     val ability_bonuses: List<AbilityBonuses>,
-    val ability_bonus_options: AbilityBonusOptions,
+    val ability_bonus_options: AbilityBonusOptions? = null,
     val alignment: String,
     val age: String,
     val size: String,
     val size_description: String,
     val starting_proficiencies: List<APIReference>,
-    val starting_proficiency_options: StartingProficiencyOptions,
+    val starting_proficiency_options: StartingProficiencyOptions? = null,
     val languages: List<APIReference>,
     val language_desc: String,
     val traits: List<APIReference>,
@@ -40,14 +40,14 @@ data class AbilityBonuses(
 
 @Serializable
 data class AbilityBonusOptions(
-    val choose : Int? = null,
+    val choose: Int,
     val from: List<AbilityBonuses>,
-    val type : String? = null
+    val type: String
 )
 
 @Serializable
 data class StartingProficiencyOptions(
-    val choose : Int? = null,
-    val from : List<APIReference>,
-    val type : String? = null
+    val choose: Int,
+    val from: List<APIReference>,
+    val type: String
 )

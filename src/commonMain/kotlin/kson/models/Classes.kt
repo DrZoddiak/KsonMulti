@@ -4,7 +4,6 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonObject
 
 @Serializable
 @SerialName("Class")
@@ -19,7 +18,7 @@ data class Classes(
     val class_levels: String,
     val multi_classing: MultiClassing,
     val subclasses: List<APIReference>,
-    val spellcasting: Spellcasting,
+    val spellcasting: Spellcasting? = null,
     val spells: String? = null,
     override val url: String
 ) : DefaultTrait {
@@ -31,7 +30,7 @@ data class Classes(
 @Serializable
 data class MultiClassing(
     val prerequisites: List<MultiClassingPreReq>,
-    val prerequisite_options: MultiClassingPreReqOptions,
+    val prerequisite_options: MultiClassingPreReqOptions? = null,
     val proficiencies: List<APIReference>,
     val proficiency_choices: List<ProficiencyChoice>
 )
@@ -62,8 +61,8 @@ data class ProficiencyChoice(
 
 @Serializable
 data class Spellcasting(
-    val level: Int? = null,
-    val spellcasting_ability: APIReference? = null,
+    val level: Int,
+    val spellcasting_ability: APIReference,
     val info: List<Info>
 ) {
     override fun toString(): String {
