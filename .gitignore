@@ -1,9 +1,0 @@
-# Project exclude paths
-/.gradle/
-/build/
-/build/classes/kotlin/jvm/main/
-/build/classes/kotlin/jvm/test/
-/build/classes/kotlin/native/main/klib/
-/build/classes/kotlin/native/test/klib/
-/build/js/packages/untitled-js-legacy/kotlin/
-/build/js/packages/untitled-js-legacy-test/kotlin/
