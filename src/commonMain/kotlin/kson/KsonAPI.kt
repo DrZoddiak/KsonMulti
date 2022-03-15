@@ -23,14 +23,12 @@ class KsonApi(val client: HttpClient, val apiUrl: String = "https://www.dnd5eapi
 fun KClass<*>.friendlyName(): String? = simpleName?.replace(Regex("(?<=.)([A-Z])"), "-$1")
 
 //Extension Functions
-fun List<Nameable>.names() = this.joinToString(", ") {
-    it.name
-}
+fun List<Nameable>.names() = this.joinToString(", ") { it.name }
 
-fun List<Indexable>.indexes() = this.joinToString("\",\n\"", "\"", "\"") {
-    it.index
-}
+//This is mostly for testing, but leaving open for other uses.
+fun List<Indexable>.indexes() = this.joinToString("\",\n\"", "\"", "\"") { it.index }
 
+//These are for Queryable
 fun Array<out String>.sortContent(prefix: String) = "$prefix=${this.joinToString(",")}"
 fun IntArray.sortContent(prefix: String) = "$prefix=${this.joinToString(",")}"
 fun DoubleArray.sortContent(prefix: String) = "$prefix=${this.joinToString(",")}"
