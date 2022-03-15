@@ -14,7 +14,7 @@ class KsonApi(val client: HttpClient, val apiUrl: String = "https://www.dnd5eapi
         return client.get("$apiUrl/$name/${input.lowercase()}")
     }
 
-    suspend inline fun <reified T> query(input: String): DefaultRequest {
+    suspend inline fun <reified T> query(input: String = ""): DefaultRequest {
         val name = T::class.friendlyName()
         return client.get("$apiUrl/$name?${input.lowercase()}")
     }
