@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "me.zodd"
-version = "1.6.1"
+version = "1.7.0"
 
 val mavenPublishingUrl = "https://repo.zodd.me/releases"
 
@@ -113,6 +113,5 @@ kotlin {
         }
     }
 }
-
 
 
