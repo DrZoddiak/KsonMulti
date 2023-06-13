@@ -5,21 +5,29 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 @Serializable
-data class DefaultRequest(
-    var count: Int,
-    var results: List<APIReference>
-) {
+data class APIReference(
+    override val index: String,
+    override val name: String,
+    override val url: String
+) : DefaultTrait {
     override fun toString(): String {
         return Json.encodeToString(this)
     }
 }
 
 @Serializable
-class APIReference(
-    override val index: String,
-    override val name: String,
-    override val url: String
-) : DefaultTrait {
+data class DC(
+    val dc_type: APIReference,
+    val dc_success: String,
+    val desc: String? = null
+)
+
+
+@Serializable
+data class DefaultRequest(
+    var count: Int,
+    var results: List<APIReference>
+) {
     override fun toString(): String {
         return Json.encodeToString(this)
     }

@@ -75,12 +75,6 @@ data class SlotDamage(
     val nine: String? = null,
 )
 
-@Serializable
-data class DC(
-    val dc_success: String,
-    val dc_type: APIReference,
-    val desc: String? = null
-)
 
 @Serializable
 data class HealAtSlotLevel(
