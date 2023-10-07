@@ -6,8 +6,8 @@ import kotlinx.serialization.json.Json
 
 @Serializable
 data class RuleSections(
-    val name: String,
-    val index: String,
-    val desc: String,
-    val url: String
-)
+    override val name: String,
+    override val index: String,
+    override val url: String,
+    val desc: String
+) : IRef

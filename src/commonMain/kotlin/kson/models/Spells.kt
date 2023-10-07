@@ -5,34 +5,42 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Spells(
-    val index: String,
-    val name: String,
-    val area_of_effect: AreaOfEffect? = null,
-    val heal_at_slot_level: HealAtSlotLevel? = null,
+    override val index: String,
+    override val name: String,
+    override val url: String,
+    @SerialName("area_of_effect")
+    val areaOfEffect: AreaOfEffect? = null,
+    @SerialName("heal_at_slot_level")
+    val healAtSlotLevel: HealAtSlotLevel? = null,
     val dc: DC? = null,
     val desc: List<String>,
-    val higher_level: List<String>? = null,
+    @SerialName("higher_level")
+    val higherLevel: List<String>? = null,
     val range: String,
     val components: List<String>,
     val material: String? = null,
     val ritual: Boolean,
     val duration: String,
     val concentration: Boolean,
-    val casting_time: String,
+    @SerialName("casting_time")
+    val castingTime: String,
     val level: Int,
-    val attack_type: String? = null,
+    @SerialName("attack_type")
+    val attackType: String? = null,
     val damage: DamageContent? = null,
     val school: APIReference,
     val classes: List<APIReference>,
-    val subclasses: List<APIReference>,
-    val url: String
-)
+    val subclasses: List<APIReference>
+) : IRef
 
 @Serializable
 data class DamageContent(
-    val damage_at_slot_level: SlotDamage? = null,
-    val damage_at_character_level: LevelDamage? = null,
-    val damage_type: APIReference? = null
+    @SerialName("damage_at_slot_level")
+    val damageAtSlotLevel: SlotDamage? = null,
+    @SerialName("damage_at_character_level")
+    val damageAtCharacterLevel: LevelDamage? = null,
+    @SerialName("damage_type")
+    val damageType: APIReference? = null
 )
 
 @Serializable

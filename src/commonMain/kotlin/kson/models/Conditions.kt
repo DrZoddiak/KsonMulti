@@ -6,8 +6,8 @@ import kotlinx.serialization.json.Json
 
 @Serializable
 data class Conditions(
-    val index: String,
-    val name: String,
-    val desc: List<String>,
-    val url: String
-)
+    override val index: String,
+    override val name: String,
+    override val url: String,
+    val desc: List<String>
+) : IRef

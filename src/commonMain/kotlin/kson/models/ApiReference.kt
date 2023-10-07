@@ -1,20 +1,32 @@
 package kson.models
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
 
+interface IRef {
+    val name: String
+    val index: String
+    val url: String
+}
+
 @Serializable
 data class DC(
-    val dc_type: APIReference,
-    val dc_value: Int? = null,
-    val success_type: String? = null
+    @SerialName("dc_type")
+    val dcType: APIReference,
+    @SerialName("dc_value")
+    val dcValue: Int? = null,
+    @SerialName("success_type")
+    val successType: String? = null
 )
 
 @Serializable
 data class Damage(
-    val damage_type: APIReference,
-    val damage_dice: String
+    @SerialName("damage_type")
+    val damageType: APIReference,
+    @SerialName("damage_dice")
+    val damageDice: String
 )
 
 
@@ -29,7 +41,8 @@ data class Choice(
 
 @Serializable
 data class OptionSet(
-    val option_set_type: String,
+    @SerialName("option_set_type")
+    val optionSetType: String,
     val options: JsonArray? = null
 )
 

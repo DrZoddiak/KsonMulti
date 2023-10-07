@@ -1,18 +1,21 @@
 package kson.models
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class Feats(
-    val index: String,
-    val name: String,
+    override val index: String,
+    override val name: String,
+    override val url: String,
     val prerequisites: List<Prerequisite>,
-    val desc: List<String>,
-    val url: String
-)
+    val desc: List<String>
+) : IRef
 
 @Serializable
 data class Prerequisite(
-    val ability_score: APIReference,
-    val minimum_score: Int
+    @SerialName("ability_score")
+    val abilityScore: APIReference,
+    @SerialName("minimum_score")
+    val minimumScore: Int
 )

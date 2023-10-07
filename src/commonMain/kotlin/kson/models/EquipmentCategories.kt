@@ -4,8 +4,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class EquipmentCategories(
-    val index: String,
-    val name: String,
-    val equipment: List<APIReference>,
-    val url: String
-)
+    override val index: String,
+    override val name: String,
+    override val url: String,
+    val equipment: List<APIReference>
+) : IRef

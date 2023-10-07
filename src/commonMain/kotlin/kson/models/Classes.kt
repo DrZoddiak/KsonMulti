@@ -6,9 +6,9 @@ import kotlinx.serialization.json.JsonArray
 
 @Serializable
 data class Classes(
-    val index: String,
-    val name: String,
-    val url: String,
+    override val index: String,
+    override val name: String,
+    override val url: String,
     @SerialName("hit_die")
     val hitDie: Int,
     @SerialName("class_levels")
@@ -21,18 +21,36 @@ data class Classes(
     val startingEquipment: List<EquipmentContent>,
     @SerialName("starting_equipment_options")
     val startingEquipmentOptions: JsonArray,//todo: fix this
-    val proficiency_choices: List<Choice>,
+    @SerialName("proficiency_choices")
+    val proficiencyChoices: List<Choice>,
     val proficiencies: List<APIReference>,
-    val saving_throws: List<APIReference>,
+    @SerialName("saving_throws")
+    val savingThrows: List<APIReference>,
     val subclasses: List<APIReference>,
+) : IRef
+
+@Serializable
+data class Spellcasting(
+    val level: Int,
+    val info: List<Info>,
+    @SerialName("spellcasting_ability")
+    val spellcastingAbility: APIReference
+)
+
+@Serializable
+data class Info(
+    val name: String,
+    val desc: List<String>
 )
 
 @Serializable
 data class MultiClassing(
     val prerequisites: List<MultiClassingPreReq>? = null,
-    val prerequisite_options: MultiClassingPreReqOptions? = null,
+    @SerialName("prerequisite_options")
+    val prerequisiteOptions: MultiClassingPreReqOptions? = null,
     val proficiencies: List<APIReference>,
-    val proficiency_choices: List<Choice>? = null
+    @SerialName("proficiency_choices")
+    val proficiencyChoices: List<Choice>? = null
 )
 
 @Serializable
@@ -44,19 +62,8 @@ data class MultiClassingPreReqOptions(
 
 @Serializable
 data class MultiClassingPreReq(
-    val ability_score: APIReference,
-    val minimum_score: Int
-)
-
-@Serializable
-data class Spellcasting(
-    val level: Int,
-    val info: List<Info>,
-    val spellcasting_ability: APIReference
-)
-
-@Serializable
-data class Info(
-    val name: String,
-    val desc: List<String>
+    @SerialName("ability_score")
+    val abilityScore: APIReference,
+    @SerialName("minimum_score")
+    val minimumScore: Int
 )

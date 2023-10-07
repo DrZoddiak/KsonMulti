@@ -7,12 +7,12 @@ import kotlinx.serialization.json.Json
 
 @Serializable
 data class Languages(
-    val index: String,
-    val name: String,
-    val url: String,
-    val desc: String,
+    override val index: String,
+    override val name: String,
+    override val url: String,
+    val desc: String? = null,
     val type: String, //todo: enum
-    val script: String,
+    val script: String? = null,
     @SerialName("typical_speakers")
     val typicalSpeakers: List<String>
-)
+) : IRef

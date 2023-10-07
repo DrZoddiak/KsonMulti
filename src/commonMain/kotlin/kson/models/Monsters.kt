@@ -6,12 +6,13 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
+import java.io.Serial
 
 @Serializable
 data class Monsters(
-    val index: String,
-    val name: String,
-    val url: String,
+    override val index: String,
+    override val name: String,
+    override val url: String,
     val desc: String? = null,
     val charisma: Int,
     val strength: Int,
@@ -19,58 +20,71 @@ data class Monsters(
     val dexterity: Int,
     val wisdom: Int,
     val intelligence: Int,
-    val image : String? = null,
+    val image: String? = null,
     val size: String,
     val type: String,
     val subtype: String? = null,
     val alignment: String,
-    val armor_class: JsonArray,
-    val hit_points: Int,
-    val hit_dice: String,
+    @SerialName("armor_class")
+    val armorClass: JsonArray,
+    @SerialName("hit_points")
+    val hitPoints: Int,
+    @SerialName("hit_dice")
+    val hitDice: String,
     val forms: List<APIReference>? = null,
     val speed: Speed,
     val proficiencies: List<ProficienciesOptions>,
-    val damage_vulnerabilities: List<String>,
-    val damage_resistances: List<String>,
-    val damage_immunities: List<String>,
-    val condition_immunities: List<APIReference>,
+    @SerialName("damage_vulnerabilities")
+    val damageVulnerabilities: List<String>,
+    @SerialName("damage_resistances")
+    val damageResistances: List<String>,
+    @SerialName("damage_immunities")
+    val damageImmunities: List<String>,
+    @SerialName("condition_immunities")
+    val conditionImmunities: List<APIReference>,
     val senses: Sense,
     val languages: String,
-    val challenge_rating: Double,
-    val special_abilities: List<SpecialAbility>? = null,
+    @SerialName("challenge_rating")
+    val challengeRating: Double,
+    @SerialName("special_abilities")
+    val specialAbilities: List<SpecialAbility>? = null,
     val actions: List<Action>? = null,
-    val legendary_actions: List<LegendaryAction>? = null,
+    @SerialName("legendary_actions")
+    val legendaryActions: List<LegendaryAction>? = null,
     val reactions: List<Reaction>? = null,
     val xp: Int
-
-)
+) : IRef
 
 @Serializable
 data class LegendaryAction(
     val name: String,
     val desc: String,
-    val attack_bonus: Int? = null,
+    @SerialName("attack_bonus")
+    val attackBonus: Int? = null,
     val damage: List<ActionDamage>? = null,
-    val dc: ActionDC? = null
+    val dc: DC? = null
 )
 
 @Serializable
 data class SpecialAbility(
     val name: String,
     val desc: String,
-    val attack_bonus: Int? = null,
+    @SerialName("attack_bonus")
+    val attackBonus: Int? = null,
     val damage: List<ActionDamage>? = null,
-    val dc: ActionDC? = null,
+    val dc: DC? = null,
     val spellcasting: SpecialAbilitySpellcasting? = null,
     val usage: SpecialAbilityUsage? = null
 )
+
 @Serializable
 data class SpecialAbilitySpellcasting(
     val level: Int? = null,
     val ability: APIReference,
     val dc: Int? = null,
     val modifier: Int? = null,
-    val components_required: List<String>,
+    @SerialName("components_required")
+    val componentsRequired: List<String>,
     val school: String? = null,
     val slots: Slots? = null,
     val spells: List<SpecialAbilitySpell>
@@ -89,7 +103,8 @@ data class SpecialAbilitySpell(
 data class SpecialAbilityUsage(
     val type: String,
     val times: Int? = null,
-    val rest_types: List<String>? = null
+    @SerialName("rest_types")
+    val restTypes: List<String>? = null
 )
 
 @Serializable
@@ -119,7 +134,8 @@ data class Slots(
 data class Sense(
     val blindsight: String? = null,
     val darkvision: String? = null,
-    val passive_perception: Int,
+    @SerialName("passive_perception")
+    val passivePerception: Int,
     val tremorsense: String? = null,
     val truesight: String? = null
 )
@@ -144,40 +160,37 @@ data class ProficienciesOptions(
 data class Reaction(
     val name: String,
     val desc: String,
-    val dc: ActionDC? = null
-)
-
-@Serializable
-data class ActionDC(
-    val dc_type: APIReference,
-    val dc_value: Int,
-    val success_type: String
+    val dc: DC? = null
 )
 
 @Serializable
 data class Action(
     val name: String,
     val desc: String,
-    val attack_bonus: Int? = null,
+    @SerialName("attack_bonus")
+    val attackBonus: Int? = null,
     val damage: List<ActionDamage>? = null,
-    val dc: ActionDC? = null,
+    val dc: DC? = null,
     val options: JsonObject? = null,
     val usage: ActionUsage? = null,
-    val attack_options: ActionAttackOptions? = null,
+    @SerialName("attack_options")
+    val attackOptions: ActionAttackOptions? = null,
     val attacks: List<ActionAttack>? = null
 )
 
 @Serializable
 data class ActionAttack(
     val name: String,
-    val dc: ActionDC,
+    val dc: DC,
     val damage: List<ActionDamage>? = null
 )
 
 @Serializable
 data class ActionDamage(
-    val damage_dice: String? = null,
-    val damage_type: APIReference? = null
+    @SerialName("damage_dice")
+    val damageDice: String? = null,
+    @SerialName("damage_type")
+    val damageType: APIReference? = null
 )
 
 @Serializable
@@ -195,14 +208,9 @@ data class ActionOption(
 )
 
 @Serializable
-data class ActionOptions(
-    val choose: Int,
-    val from: List<ActionOption>
-)
-
-@Serializable
 data class ActionUsage(
     val type: String,
     val dice: String? = null,
-    val min_value: Int? = null
+    @SerialName("min_value")
+    val minValue: Int? = null
 )

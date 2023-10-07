@@ -1,5 +1,6 @@
 package kson.models
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -7,33 +8,36 @@ import kotlinx.serialization.json.JsonObject
 
 @Serializable
 data class Races(
-    val index: String,
-    val name: String,
+    override val index: String,
+    override val name: String,
+    override val url: String,
     val speed: Int,
-    val ability_bonuses: List<AbilityBonuses>,
-    val ability_bonus_options: JsonObject? = null,
+    @SerialName("ability_bonuses")
+    val abilityBonuses: List<AbilityBonuses>,
+    @SerialName("ability_bonus_options")
+    val abilityBonusOptions: JsonObject? = null,
     val alignment: String,
     val age: String,
     val size: String,
-    val size_description: String,
-    val starting_proficiencies: List<APIReference>,
-    val starting_proficiency_options: JsonObject? = null,
+    @SerialName("size_description")
+    val sizeDescription: String,
+    @SerialName("starting_proficiencies")
+    val startingProficiencies: List<APIReference>,
+    @SerialName("starting_proficiency_options")
+    val startingProficiencyOptions: JsonObject? = null,
     val languages: List<APIReference>,
-    val language_desc: String,
+    @SerialName("language_desc")
+    val languageDesc: String,
     val traits: List<APIReference>,
-    val subraces: List<APIReference>,
-    val url: String
-)
+    val subraces: List<APIReference>
+) : IRef
 
 @Serializable
 data class AbilityBonuses(
-    val ability_score: APIReference,
+    @SerialName("ability_score")
+    val abilityScore: APIReference,
     val bonus: Int
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+)
 
 @Serializable
 data class AbilityBonusOptions(

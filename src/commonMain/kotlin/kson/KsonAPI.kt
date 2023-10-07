@@ -30,7 +30,3 @@ fun List<APIReference>.names() = this.joinToString(", ") { it.name }
 fun List<APIReference>.indexes() = this.joinToString("\",\n\"", "\"", "\"") { it.index }
 
 //These are for Queryable
-fun Array<out String>.sortContent(prefix: String) = "$prefix=${this.joinToString(",")}"
-fun IntArray.sortContent(prefix: String) = "$prefix=${this.joinToString(",")}"
-fun DoubleArray.sortContent(prefix: String) = "$prefix=${this.joinToString(",")}"
-

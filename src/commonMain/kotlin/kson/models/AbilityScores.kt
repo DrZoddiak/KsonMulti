@@ -5,11 +5,11 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AbilityScores(
-    val index: String,
-    val name: String,
-    val url: String,
-    val desc: List<String>,
+    override val index: String,
+    override val name: String,
+    override val url: String,
+    val desc: List<String>? = null,
     @SerialName("full_name")
     val fullName: String,
     val skills: List<APIReference>
-)
+) : IRef

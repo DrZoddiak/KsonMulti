@@ -6,9 +6,9 @@ import kotlinx.serialization.json.JsonObject
 
 @Serializable
 data class Backgrounds(
-    val index: String,
-    val name: String,
-    val url: String,
+    override val index: String,
+    override val name: String,
+    override val url: String,
     @SerialName("starting_proficiencies")
     val startingProficiencies: List<APIReference>,
     @SerialName("starting_equipment")
@@ -23,7 +23,7 @@ data class Backgrounds(
     val ideals: Choice,
     val bonds: Choice,
     val flaws: Choice
-)
+) : IRef
 
 @Serializable
 data class LanguageOptions(

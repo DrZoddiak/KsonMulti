@@ -10,10 +10,10 @@ data class DefaultRequest(
 
 @Serializable
 data class APIReference(
-    val index: String,
-    val name: String,
-    val url: String
-)
+    override val index: String,
+    override val name: String,
+    override val url: String
+) : IRef
 
 @Serializable
 data class Cost(

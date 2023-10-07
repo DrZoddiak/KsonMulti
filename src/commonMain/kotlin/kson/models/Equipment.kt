@@ -1,42 +1,59 @@
 package kson.models
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class Equipment(
-    val index: String,
-    val name: String,
-    val armor_category: String? = null,
-    val armor_class: ArmorClass? = null,
+    override val index: String,
+    override val name: String,
+    override val url: String,
+    @SerialName("armor_category")
+    val armorCategory: String? = null,
+    @SerialName("armor_class")
+    val armorClass: ArmorClass? = null,
     val capacity: String? = null,
-    val category_range: String? = null,
+    @SerialName("category_range")
+    val categoryRange: String? = null,
     val contents: List<Content>? = null,
     val desc: List<String>,
-    val gear_category: APIReference? = null,
-    val equipment_category: APIReference,
-    val weapon_category: String? = null,
-    val weapon_range: String? = null,
+    @SerialName("gear_category")
+    val gearCategory: APIReference? = null,
+    @SerialName("equipment_category")
+    val equipmentCategory: APIReference,
+    @SerialName("weapon_category")
+    val weaponCategory: String? = null,
+    @SerialName("weapon_range")
+    val weaponRange: String? = null,
     val cost: Cost,
     val damage: Damage? = null,
-    val two_handed_damage: Damage? = null,
+    @SerialName("two_handed_damage")
+    val twoHandedDamage: Damage? = null,
     val range: Range? = null,
     val weight: Double? = null,
     val properties: List<APIReference>? = null,
     val quantity: Int? = null,
     val special: List<String>? = null,
     val speed: Speed? = null,
-    val stealth_disadvantage: Boolean? = null,
-    val str_minimum: Int? = null,
-    val throw_range: ThrowRange? = null,
-    val tool_category: String? = null,
-    val vehicle_category: String? = null,
-    val url: String
-)
+    @SerialName("stealth_disadvantage")
+    val stealthDisadvantage: Boolean? = null,
+    @SerialName("str_minimum")
+    val strMinimum: Int? = null,
+    @SerialName("throw_range")
+    val throwRange: ThrowRange? = null,
+    @SerialName("tool_category")
+    val toolCategory: String? = null,
+    @SerialName("vehicle_category")
+    val vehicleCategory: String? = null
+) : IRef
+
 @Serializable
 data class ArmorClass(
     val base: Int,
-    val dex_bonus: Boolean,
-    val max_bonus: Int? = null
+    @SerialName("dex_bonus")
+    val dexBonus: Boolean,
+    @SerialName("max_bonus")
+    val maxBonus: Int? = null
 )
 
 @Serializable

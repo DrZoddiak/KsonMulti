@@ -8,25 +8,31 @@ import kotlinx.serialization.json.JsonObject
 
 @Serializable
 data class Traits(
-    val index: String,
+    override val index: String,
+    override val name: String,
+    override val url: String,
     val races: List<APIReference>,
     val subraces: List<APIReference>,
-    val name: String,
     val parent: APIReference? = null,
     val desc: List<String>,
     val proficiencies: List<APIReference>,
-    val proficiency_choices: JsonObject? = null,
-    val trait_specific: TraitSpecific? = null,
-    val url: String
-)
+    @SerialName("proficiency_choices")
+    val proficiencyChoices: JsonObject? = null,
+    @SerialName("trait_specific")
+    val traitSpecific: TraitSpecific? = null
+): IRef
 
 
 @Serializable
 data class TraitSpecific(
-    val subtrait_options: JsonObject? = null,
-    val spell_options: JsonObject? = null,
-    val damage_type: APIReference? = null,
-    val breath_weapon: ActionContent? = null
+    @SerialName("subtrait_options")
+    val subtraitOptions: JsonObject? = null,
+    @SerialName("spell_options")
+    val spellOptions: JsonObject? = null,
+    @SerialName("damage_type")
+    val damageType: APIReference? = null,
+    @SerialName("breath_weapon")
+    val breathWeapon: ActionContent? = null
 )
 
 @Serializable
@@ -34,7 +40,7 @@ data class ActionContent(
     val name: String? = null,
     val desc: String? = null,
     val usage: Usage? = null,
-    val dc: TraitDC? = null,
+    val dc: DC? = null,
     val damage: List<ActionDamageContent>
 )
 
@@ -45,15 +51,11 @@ data class Usage(
 )
 
 @Serializable
-data class TraitDC(
-    val dc_type: APIReference,
-    val success_type: String
-)
-
-@Serializable
 data class ActionDamageContent(
-    val damage_type: APIReference,
-    val damage_at_character_level: TraitLevelDamage
+    @SerialName("damage_type")
+    val damageType: APIReference,
+    @SerialName("damage_at_character_level")
+    val damageAtCharacterLevel: TraitLevelDamage
 )
 
 @Serializable

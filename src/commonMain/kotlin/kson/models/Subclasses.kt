@@ -5,17 +5,18 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Subclasses(
-    val index: String,
-    val name: String,
-    val url: String,
+    override val index: String,
+    override val name: String,
+    override val url: String,
     val desc: List<String>,
     @SerialName("class")
     val clazz: APIReference,
-    val subclass_flavor: String,
-    val subclass_levels: String,
+    @SerialName("subclass_flavor")
+    val subclassFavor: String,
+    @SerialName("subclass_levels")
+    val subclassLevels: String,
     val spells: List<Spell>
-
-)
+): IRef
 
 @Serializable
 data class Spell(
