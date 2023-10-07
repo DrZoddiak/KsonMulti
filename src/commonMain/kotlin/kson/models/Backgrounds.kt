@@ -2,35 +2,35 @@ package kson.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonObject
 
 @Serializable
 data class Backgrounds(
-    override val index: String,
-    override val name: String,
-    val starting_proficiencies: List<APIReference>,
-    val language_options: LanguageOptions,
-    val starting_equipment: List<EquipmentContent>,
-    val starting_equipment_options: List<StartingEquipmentOptions>,
+    val index: String,
+    val name: String,
+    val url: String,
+    @SerialName("starting_proficiencies")
+    val startingProficiencies: List<APIReference>,
+    @SerialName("starting_equipment")
+    val startingEquipment: List<EquipmentContent>,
+    @SerialName("starting_equipment_options")
+    val startingEquipmentOptions: List<Choice>,
+    @SerialName("language_options")
+    val languageOptions: Choice,
     val feature: Feature,
-    val personality_traits: CharacteristicOptions,
-    val ideals: IdealsOptions,
-    val bonds: CharacteristicOptions,
-    val flaws: CharacteristicOptions,
-    override val url: String
-
-) : DefaultTrait {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+    @SerialName("personality_traits")
+    val personalityTraits: JsonObject, //Choice
+    val ideals: Choice,
+    val bonds: Choice,
+    val flaws: Choice
+)
 
 @Serializable
 data class LanguageOptions(
+    val desc: String,
     val choose: Int,
-    val from: List<APIReference>,
-    val type: String
+    val type: String,
+    val from: JsonObject //todo : Option Set
 )
 
 @Serializable
@@ -38,11 +38,7 @@ data class StartingEquipmentOptions(
     val choose: Int,
     val type: String,
     val from: List<StartingEquipmentOption>,
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+)
 
 @Serializable
 data class StartingEquipmentOption(
@@ -52,54 +48,32 @@ data class StartingEquipmentOption(
 
 @Serializable
 data class IdealsOptions(
-    override val choose: String,
-    override val type: String,
-    override val from: List<IdealsFrom>
-) : Options {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+    val choose: String,
+    val type: String,
+    val from: List<IdealsFrom>
+)
 
 @Serializable
 data class CharacteristicOptions(
     val choose: Int,
     val type: String,
     val from: List<String>
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+)
 
 @Serializable
 data class IdealsFrom(
     val desc: String,
     val alignments: List<APIReference>
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+)
 
 @Serializable
-@SerialName("Equipment")
 data class EquipmentContent(
     val equipment: APIReference,
     val quantity: Int
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+)
 
 @Serializable
 data class Feature(
     val name: String,
     val desc: List<String>
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
-
+)

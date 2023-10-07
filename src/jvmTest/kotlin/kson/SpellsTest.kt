@@ -10,8 +10,7 @@ class SpellsTest {
     @Test
     fun spellsGenerate() = runTest {
         val query = api.query<Spells>("")
-        val result = query.results.indexes()
-        println(result)
+        println(query)
     }
 
     private val list = listOf(

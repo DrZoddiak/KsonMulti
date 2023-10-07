@@ -10,8 +10,7 @@ class EquipmentTest {
     @Test
     fun weaponsGenerate() = runTest {
         val query = api.query<Equipment>("")
-        val result = query.results.indexes()
-        println(result)
+        println(query)
     }
 
     private val list = listOf(

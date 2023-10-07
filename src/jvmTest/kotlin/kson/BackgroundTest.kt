@@ -10,8 +10,7 @@ class BackgroundTest {
     @Test
     fun backgroundGenerate() = runTest {
         val query = api.query<Backgrounds>("")
-        val result = query.results.indexes()
-        println(result)
+        println(query)
     }
 
 

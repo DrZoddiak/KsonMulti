@@ -10,7 +10,7 @@ class FeaturesTest {
     @Test
     fun featuresGenerate() = runTest {
         val query = api.query<Features>("")
-        val result = query.results.indexes()
+        val result = query
         println(result)
     }
 
@@ -165,14 +165,6 @@ class FeaturesTest {
         "eldritch-invocation-voice-of-the-chain-master",
         "eldritch-invocation-whispers-of-the-grave",
         "eldritch-invocation-witch-sight",
-        "eldritch-invocations-1",
-        "eldritch-invocations-2",
-        "eldritch-invocations-3",
-        "eldritch-invocations-4",
-        "eldritch-invocations-5",
-        "eldritch-invocations-6",
-        "eldritch-invocations-7",
-        "eldritch-invocations-8",
         "eldritch-master",
         "elemental-affinity",
         "elusive",

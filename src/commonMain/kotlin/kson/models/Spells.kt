@@ -2,13 +2,11 @@ package kson.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 
 @Serializable
 data class Spells(
-    override val index: String,
-    override val name: String,
+    val index: String,
+    val name: String,
     val area_of_effect: AreaOfEffect? = null,
     val heal_at_slot_level: HealAtSlotLevel? = null,
     val dc: DC? = null,
@@ -27,12 +25,8 @@ data class Spells(
     val school: APIReference,
     val classes: List<APIReference>,
     val subclasses: List<APIReference>,
-    override val url: String
-) : DefaultTrait {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+    val url: String
+)
 
 @Serializable
 data class DamageContent(

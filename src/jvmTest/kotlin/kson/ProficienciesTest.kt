@@ -10,7 +10,7 @@ class ProficienciesTest {
     @Test
     fun proficenciesGenerate() = runTest {
         val query = api.query<Proficiencies>("")
-        val result = query.results.indexes()
+        val result = query
         println(result)
     }
 

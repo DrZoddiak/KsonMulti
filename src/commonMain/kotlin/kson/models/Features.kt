@@ -7,23 +7,19 @@ import kotlinx.serialization.json.Json
 
 @Serializable
 data class Features(
-    override val index: String,
-    override val name: String,
+    val index: String,
+    val name: String,
     val level: Int,
     @SerialName("class") //Reserved word.
     val clazz: APIReference,
     val subclass: APIReference? = null,
     val desc: List<String>,
-    val feature_specific: FeatureSpecific? = null,
+    //val feature_specific: FeatureSpecific? = null,
     val parent: APIReference? = null,
     val reference: String? = null,
     val prerequisite: List<PrerequisiteFeature>? = null,
-    override val url: String
-) : DefaultTrait {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+    val url: String
+)
 
 @Serializable
 data class FeatureSpecific(

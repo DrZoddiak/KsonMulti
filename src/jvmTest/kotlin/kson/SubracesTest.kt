@@ -10,7 +10,7 @@ class SubracesTest {
     @Test
     fun subracesGenerate() = runTest {
         val query = api.query<Subraces>("")
-        val result = query.results.indexes()
+        val result = query
         println(result)
     }
 

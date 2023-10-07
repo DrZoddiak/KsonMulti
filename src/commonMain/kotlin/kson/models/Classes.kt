@@ -2,43 +2,43 @@ package kson.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonArray
 
 @Serializable
-@SerialName("Class")
 data class Classes(
-    override val index: String,
-    override val name: String,
-    val hit_die: Int,
-    val proficiency_choices: List<ProficiencyChoice>,
-    val proficiencies: List<APIReference>,
-    val saving_throws: List<APIReference>,
-    val starting_equipment: List<EquipmentContent>,
-    val class_levels: String,
-    val multi_classing: MultiClassing,
-    val subclasses: List<APIReference>,
+    val index: String,
+    val name: String,
+    val url: String,
+    @SerialName("hit_die")
+    val hitDie: Int,
+    @SerialName("class_levels")
+    val classLevels: String,
+    @SerialName("multi_classing")
+    val multiClassing: MultiClassing,
     val spellcasting: Spellcasting? = null,
     val spells: String? = null,
-    override val url: String
-) : DefaultTrait {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+    @SerialName("starting_equipment")
+    val startingEquipment: List<EquipmentContent>,
+    @SerialName("starting_equipment_options")
+    val startingEquipmentOptions: JsonArray,//todo: fix this
+    val proficiency_choices: List<Choice>,
+    val proficiencies: List<APIReference>,
+    val saving_throws: List<APIReference>,
+    val subclasses: List<APIReference>,
+)
 
 @Serializable
 data class MultiClassing(
-    val prerequisites: List<MultiClassingPreReq>,
+    val prerequisites: List<MultiClassingPreReq>? = null,
     val prerequisite_options: MultiClassingPreReqOptions? = null,
     val proficiencies: List<APIReference>,
-    val proficiency_choices: List<ProficiencyChoice>
+    val proficiency_choices: List<Choice>? = null
 )
 
 @Serializable
 data class MultiClassingPreReqOptions(
     val choose: Int? = null,
-    val from: List<MultiClassingPreReq>,
+    val from: OptionSet,
     val type: String? = null
 )
 
@@ -49,33 +49,14 @@ data class MultiClassingPreReq(
 )
 
 @Serializable
-data class ProficiencyChoice(
-    val choose: Int,
-    val type: String,
-    val from: List<APIReference>
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
-
-@Serializable
 data class Spellcasting(
     val level: Int,
-    val spellcasting_ability: APIReference,
-    val info: List<Info>
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+    val info: List<Info>,
+    val spellcasting_ability: APIReference
+)
 
 @Serializable
 data class Info(
-    val desc: List<String>,
-    val name: String
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+    val name: String,
+    val desc: List<String>
+)

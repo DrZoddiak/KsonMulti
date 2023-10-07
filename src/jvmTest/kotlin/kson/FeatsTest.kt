@@ -10,7 +10,7 @@ class FeatsTest {
     @Test
     fun featsGenerate() = runTest {
         val query = api.query<Feats>("")
-        val result = query.results.indexes()
+        val result = query
         println(result)
     }
 

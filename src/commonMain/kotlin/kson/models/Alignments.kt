@@ -6,13 +6,9 @@ import kotlinx.serialization.json.Json
 
 @Serializable
 data class Alignments(
-    override val index: String,
-    override val name: String,
-    val abbreviation: String,
+    val index: String,
+    val name: String,
+    val url: String,
     val desc: String,
-    override val url: String
-) : DefaultTrait {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+    val abbreviation: String
+)

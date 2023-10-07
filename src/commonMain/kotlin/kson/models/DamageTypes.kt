@@ -6,12 +6,8 @@ import kotlinx.serialization.json.Json
 
 @Serializable
 data class DamageTypes(
-    override val index: String,
-    override val name: String,
+    val index: String,
+    val name: String,
     val desc: List<String>,
-    override val url: String
-) : DefaultTrait {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+    val url: String
+)

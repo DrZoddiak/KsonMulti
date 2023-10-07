@@ -10,7 +10,7 @@ class MagicSchoolsTest {
     @Test
     fun magicSchoolsGenerate() = runTest {
         val query = api.query<MagicSchools>("")
-        val result = query.results.indexes()
+        val result = query
         println(result)
     }
 

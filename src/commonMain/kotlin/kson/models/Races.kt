@@ -3,30 +3,27 @@ package kson.models
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonObject
 
 @Serializable
 data class Races(
-    override val index: String,
-    override val name: String,
+    val index: String,
+    val name: String,
     val speed: Int,
     val ability_bonuses: List<AbilityBonuses>,
-    val ability_bonus_options: AbilityBonusOptions? = null,
+    val ability_bonus_options: JsonObject? = null,
     val alignment: String,
     val age: String,
     val size: String,
     val size_description: String,
     val starting_proficiencies: List<APIReference>,
-    val starting_proficiency_options: StartingProficiencyOptions? = null,
+    val starting_proficiency_options: JsonObject? = null,
     val languages: List<APIReference>,
     val language_desc: String,
     val traits: List<APIReference>,
     val subraces: List<APIReference>,
-    override val url: String
-) : DefaultTrait {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+    val url: String
+)
 
 @Serializable
 data class AbilityBonuses(

@@ -1,29 +1,25 @@
 package kson.models
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonObject
 
 @Serializable
 data class Subraces(
-    val ability_bonuses: List<AbilityBonus>,
+    val index: String,
+    val name: String,
+    val url: String,
     val desc: String,
-    override val index: String,
-    val language_options: LanguageOption? = null,
-    override val name: String,
     val race: APIReference,
-    val racial_traits: List<APIReference>,
+    val ability_bonuses: List<AbilityBonus>,
     val starting_proficiencies: List<APIReference>,
-    override val url: String
-) : DefaultTrait
+    val languages : JsonArray,
+    val language_options: JsonObject? = null,
+    val racial_traits: List<APIReference>
+)
 
 @Serializable
 data class AbilityBonus(
     val ability_score: APIReference,
     val bonus: Int,
-)
-
-@Serializable
-data class LanguageOption(
-    val choose: Int,
-    val from: List<APIReference>,
-    val type: String
 )

@@ -10,8 +10,7 @@ class ClassesTest {
     @Test
     fun classesGenerate() = runTest {
         val query = api.query<Classes>("")
-        val result = query.results.indexes()
-        println(result)
+        println(query)
     }
 
     private val list = listOf(

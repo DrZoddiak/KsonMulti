@@ -10,7 +10,7 @@ class EquipmentCategoriesTest {
     @Test
     fun equipmentCategoryGenerate() = runTest {
         val query = api.query<EquipmentCategories>("")
-        val result = query.results.indexes()
+        val result = query
         println(result)
     }
 

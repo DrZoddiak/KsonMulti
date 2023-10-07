@@ -4,26 +4,31 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonObject
 
 @Serializable
 data class Monsters(
-    override val index: String,
-    override val name: String,
+    val index: String,
+    val name: String,
+    val url: String,
+    val desc: String? = null,
+    val charisma: Int,
+    val strength: Int,
+    val constitution: Int,
+    val dexterity: Int,
+    val wisdom: Int,
+    val intelligence: Int,
+    val image : String? = null,
     val size: String,
     val type: String,
     val subtype: String? = null,
     val alignment: String,
-    val armor_class: Int,
+    val armor_class: JsonArray,
     val hit_points: Int,
     val hit_dice: String,
     val forms: List<APIReference>? = null,
     val speed: Speed,
-    val strength: Int,
-    val dexterity: Int,
-    val constitution: Int,
-    val intelligence: Int,
-    val wisdom: Int,
-    val charisma: Int,
     val proficiencies: List<ProficienciesOptions>,
     val damage_vulnerabilities: List<String>,
     val damage_resistances: List<String>,
@@ -34,15 +39,11 @@ data class Monsters(
     val challenge_rating: Double,
     val special_abilities: List<SpecialAbility>? = null,
     val actions: List<Action>? = null,
-    val reactions: List<Reaction>? = null,
     val legendary_actions: List<LegendaryAction>? = null,
-    val xp: Int,
-    override val url: String
-) : DefaultTrait {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+    val reactions: List<Reaction>? = null,
+    val xp: Int
+
+)
 
 @Serializable
 data class LegendaryAction(
@@ -51,11 +52,7 @@ data class LegendaryAction(
     val attack_bonus: Int? = null,
     val damage: List<ActionDamage>? = null,
     val dc: ActionDC? = null
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+)
 
 @Serializable
 data class SpecialAbility(
@@ -66,12 +63,7 @@ data class SpecialAbility(
     val dc: ActionDC? = null,
     val spellcasting: SpecialAbilitySpellcasting? = null,
     val usage: SpecialAbilityUsage? = null
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
-
+)
 @Serializable
 data class SpecialAbilitySpellcasting(
     val level: Int? = null,
@@ -82,11 +74,7 @@ data class SpecialAbilitySpellcasting(
     val school: String? = null,
     val slots: Slots? = null,
     val spells: List<SpecialAbilitySpell>
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+)
 
 @Serializable
 data class SpecialAbilitySpell(
@@ -102,11 +90,7 @@ data class SpecialAbilityUsage(
     val type: String,
     val times: Int? = null,
     val rest_types: List<String>? = null
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+)
 
 @Serializable
 data class Slots(
@@ -129,11 +113,7 @@ data class Slots(
     val eight: Int? = null,
     @SerialName("9")
     val nine: Int? = null,
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+)
 
 @Serializable
 data class Sense(
@@ -142,11 +122,7 @@ data class Sense(
     val passive_perception: Int,
     val tremorsense: String? = null,
     val truesight: String? = null
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+)
 
 @Serializable
 data class Speed(
@@ -156,121 +132,77 @@ data class Speed(
     val hover: String? = null,
     val swim: String? = null,
     val walk: String? = null
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+)
 
 @Serializable
 data class ProficienciesOptions(
     val proficiency: APIReference,
     val value: Int
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+)
 
 @Serializable
 data class Reaction(
     val name: String,
     val desc: String,
     val dc: ActionDC? = null
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+)
 
 @Serializable
 data class ActionDC(
     val dc_type: APIReference,
     val dc_value: Int,
     val success_type: String
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+)
 
 @Serializable
 data class Action(
-    override val name: String,
+    val name: String,
     val desc: String,
     val attack_bonus: Int? = null,
     val damage: List<ActionDamage>? = null,
     val dc: ActionDC? = null,
-    val options: ActionOptions? = null,
+    val options: JsonObject? = null,
     val usage: ActionUsage? = null,
     val attack_options: ActionAttackOptions? = null,
     val attacks: List<ActionAttack>? = null
-) : Nameable {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+)
 
 @Serializable
 data class ActionAttack(
     val name: String,
     val dc: ActionDC,
     val damage: List<ActionDamage>? = null
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+)
 
 @Serializable
 data class ActionDamage(
     val damage_dice: String? = null,
     val damage_type: APIReference? = null
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+)
 
 @Serializable
 data class ActionAttackOptions(
     val choose: Int,
     val type: String,
     val from: List<ActionAttack>
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+)
 
 @Serializable
 data class ActionOption(
     val name: String? = null,
     val count: String? = null,
     val type: String? = null
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+)
 
 @Serializable
 data class ActionOptions(
     val choose: Int,
     val from: List<ActionOption>
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+)
 
 @Serializable
 data class ActionUsage(
     val type: String,
     val dice: String? = null,
     val min_value: Int? = null
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+)

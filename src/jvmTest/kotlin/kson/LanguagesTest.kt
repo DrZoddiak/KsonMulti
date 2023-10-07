@@ -10,7 +10,7 @@ class LanguagesTest {
     @Test
     fun languagesGenerate() = runTest {
         val query = api.query<Languages>("")
-        val result = query.results.indexes()
+        val result = query
         println(result)
     }
 

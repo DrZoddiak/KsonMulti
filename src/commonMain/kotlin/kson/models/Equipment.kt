@@ -1,13 +1,11 @@
 package kson.models
 
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 
 @Serializable
 data class Equipment(
-    override val index: String,
-    override val name: String,
+    val index: String,
+    val name: String,
     val armor_category: String? = null,
     val armor_class: ArmorClass? = null,
     val capacity: String? = null,
@@ -32,13 +30,8 @@ data class Equipment(
     val throw_range: ThrowRange? = null,
     val tool_category: String? = null,
     val vehicle_category: String? = null,
-    override val url: String
-) : DefaultTrait {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
-
+    val url: String
+)
 @Serializable
 data class ArmorClass(
     val base: Int,
@@ -65,8 +58,10 @@ data class Range(
     val normal: Int
 )
 
+/*
 @Serializable
 data class Damage(
     val damage_dice: String,
     val damage_type: APIReference
 )
+*/

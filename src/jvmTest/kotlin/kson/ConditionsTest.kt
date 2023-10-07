@@ -10,8 +10,7 @@ class ConditionsTest {
     @Test
     fun conditionsGenerate() = runTest {
         val query = api.query<Conditions>("")
-        val result = query.results.indexes()
-        println(result)
+        println(query)
     }
 
     private val list = listOf(

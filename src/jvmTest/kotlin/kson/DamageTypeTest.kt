@@ -10,7 +10,7 @@ class DamageTypeTest {
     @Test
     fun damageTypeGenerate() = runTest {
         val query = api.query<DamageTypes>("")
-        val result = query.results.indexes()
+        val result = query
         println(result)
     }
 

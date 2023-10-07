@@ -10,7 +10,7 @@ class MagicItemsTest {
     @Test
     fun magicItemsGenerate() = runTest {
         val query = api.query<MagicItems>("")
-        val result = query.results.indexes()
+        val result = query
         println(result)
     }
 

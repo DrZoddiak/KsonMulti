@@ -10,7 +10,7 @@ class WeaponPropertiesTest {
     @Test
     fun weaponPropertiesGenerate() = runTest {
         val query = api.query<WeaponProperties>("")
-        val result = query.results.indexes()
+        val result = query
         println(result)
     }
 

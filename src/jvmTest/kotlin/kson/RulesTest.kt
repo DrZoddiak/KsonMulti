@@ -10,7 +10,7 @@ class RulesTest {
     @Test
     fun rulesGenerate() = runTest {
         val query = api.query<Rules>("")
-        val result = query.results.indexes()
+        val result = query
         println(result)
     }
 

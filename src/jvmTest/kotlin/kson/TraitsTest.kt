@@ -10,7 +10,7 @@ class TraitsTest {
     @Test
     fun traitsGenerate() = runTest {
         val query = api.query<Traits>("")
-        val result = query.results.indexes()
+        val result = query
         println(result)
     }
 

@@ -10,7 +10,7 @@ class RaceTest {
     @Test
     fun raceGenerate() = runTest {
         val query = api.query<Races>("")
-        val result = query.results.indexes()
+        val result = query
         println(result)
     }
 

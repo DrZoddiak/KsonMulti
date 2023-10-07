@@ -2,17 +2,18 @@ package kson
 
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
+import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.serialization.kotlinx.json.*
+import kotlinx.serialization.json.Json
+import kson.models.Classes
 
 val client = HttpClient(CIO) {
-    install(JsonFeature) {
-        val json = kotlinx.serialization.json.Json {
+    install(ContentNegotiation) {
+        json(Json {
             ignoreUnknownKeys = true
             prettyPrint = true
             isLenient = true
-        }
-        serializer = KotlinxSerializer(json)
+        })
     }
     engine {
         // this: CIOEngineConfig
@@ -28,6 +29,8 @@ val client = HttpClient(CIO) {
     }
 }
 
-
-
-
+suspend fun main() {
+    val api = KsonApi(client)
+    val q = api.query<Classes>()
+    println(q)
+}

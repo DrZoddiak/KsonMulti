@@ -1,7 +1,8 @@
 plugins {
-    kotlin("multiplatform") version "1.6.10"
-    kotlin("plugin.serialization") version "1.6.10"
+    kotlin("multiplatform") version "1.8.10"
+    kotlin("plugin.serialization") version "1.8.10"
     `maven-publish`
+
 }
 
 group = "me.zodd"
@@ -17,19 +18,13 @@ kotlin {
     jvm {
         compilations.all {
             kotlinOptions {
-                jvmTarget = "1.8"
-                freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
+                jvmTarget = "17"
             }
         }
         withJava()
         testRuns["test"].executionTask.configure {
             useJUnitPlatform()
         }
-    }
-    js(IR) {
-        browser()
-        nodejs()
-        useCommonJs()
     }
 
     afterEvaluate {
@@ -58,8 +53,8 @@ kotlin {
                     maven {
                         setUrl(mavenPublishingUrl)
                         credentials {
-                            username = project.properties["mavenUser"] as String
-                            password = project.properties["mavenPassword"] as String
+                            username = project.properties["mavenUser"] as String?
+                            password = project.properties["mavenPassword"] as String?
                         }
                         authentication {
                             create<BasicAuthentication>("basic")
@@ -76,9 +71,11 @@ kotlin {
         //COMMON
         val commonMain by getting {
             dependencies {
-                api("io.ktor:ktor-client-serialization:1.6.7")
+                api("io.ktor:ktor-client-serialization:2.3.1")
                 api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
-                api("io.ktor:ktor-client-core:1.6.7")
+                api("io.ktor:ktor-client-core:2.3.1")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.1")
+                implementation("io.ktor:ktor-client-content-negotiation:2.3.1")
             }
         }
         val commonTest by getting {
@@ -91,24 +88,13 @@ kotlin {
         val jvmMain by getting {
             dependencies {
                 api(kotlin("stdlib-jdk8"))
-                api("io.ktor:ktor-client-cio:1.6.7")
+                api("io.ktor:ktor-client-cio:2.3.1")
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.0")
                 api(kotlin("reflect"))
             }
         }
         val jvmTest by getting {
             dependencies {
-            }
-        }
-        //JS
-        val jsMain by getting {
-            dependencies {
-                api("io.ktor:ktor-client-js:1.6.7")
-            }
-        }
-        val jsTest by getting {
-            dependencies {
-                implementation(kotlin("test-js"))
             }
         }
     }

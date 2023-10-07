@@ -10,7 +10,7 @@ class SubclassesTest {
     @Test
     fun subclassesGenerate() = runTest {
         val query = api.query<Subclasses>("")
-        val result = query.results.indexes()
+        val result = query
         println(result)
     }
 

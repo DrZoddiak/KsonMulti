@@ -3,10 +3,11 @@ package kson
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import kson.models.Monsters
+import org.junit.jupiter.api.Nested
 import kotlin.test.Test
 import kotlin.test.assertFails
 
-val api = KsonApi(client)
+val api get() = KsonApi(client)
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class MonsterTest {
@@ -298,8 +299,10 @@ class MonsterTest {
         "troll",
         "tyrannosaurus-rex",
         "unicorn",
-        "vampire",
+        "vampire-vampire",
         "vampire-spawn",
+        "vampire-bat",
+        "vampire-mist",
         "veteran",
         "violet-fungus",
         "vrock",
@@ -354,8 +357,8 @@ class MonsterTest {
                 """
                 Name: ${mon.name}
                 CR: ${mon.challenge_rating}
-                Form: ${mon.forms?.names()}
-                Attack : ${mon.actions?.names()}
+                Form: ${mon.forms?.map { it.name }}
+                Attack : ${mon.actions?.map { it.name }}
                 
                 $mon
             """.trimIndent()
@@ -367,13 +370,13 @@ class MonsterTest {
     @Test
     fun monsterCRTest() = runTest {
         val mon = api.query<Monsters>("")
-        val results = mon.results.indexes()
-        println(mon.count)
-        println(results)
+        //println(mon.size)
+        println(mon)
     }
 
 
-    class FailingTests {
+    @Nested
+    inner class FailingTests {
         @Test
         fun monsterRoute() = runTest {
             println("FAIL TESTS")

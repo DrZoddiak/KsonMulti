@@ -10,8 +10,7 @@ class AlignmentTest {
     @Test
     fun alignmentGenerate() = runTest {
         val align = api.query<Alignments>("")
-        val result = align.results.indexes()
-        println(result)
+        println(align)
 
     }
 

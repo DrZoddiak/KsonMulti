@@ -6,12 +6,8 @@ import kotlinx.serialization.json.Json
 
 @Serializable
 data class RuleSections(
-    override val name: String,
-    override val index: String,
+    val name: String,
+    val index: String,
     val desc: String,
-    override val url: String
-) : DefaultTrait {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
+    val url: String
+)

@@ -10,7 +10,7 @@ class SkillsTest {
     @Test
     fun skillsGenerate() = runTest {
         val query = api.query<Skills>("")
-        val result = query.results.indexes()
+        val result = query
         println(result)
     }
 

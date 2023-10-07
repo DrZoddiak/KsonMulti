@@ -10,8 +10,7 @@ class RuleSectionsTest {
     @Test
     fun ruleSectionsGenerate() = runTest {
         val query = api.query<RuleSections>("")
-        val result = query.results.indexes()
-        println(result)
+        println(query)
     }
 
     private val list = listOf(

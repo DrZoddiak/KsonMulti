@@ -4,49 +4,29 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonObject
 
 @Serializable
 data class Traits(
-    override val index: String,
+    val index: String,
     val races: List<APIReference>,
     val subraces: List<APIReference>,
-    override val name: String,
+    val name: String,
     val parent: APIReference? = null,
     val desc: List<String>,
     val proficiencies: List<APIReference>,
-    val proficiency_choices: ProficiencyChoices? = null,
+    val proficiency_choices: JsonObject? = null,
     val trait_specific: TraitSpecific? = null,
-    override val url: String
-) : DefaultTrait {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
-
-@Serializable
-data class ProficiencyChoices(
-    val choose: Int,
-    val from: List<APIReference>,
-    val type: String
+    val url: String
 )
+
 
 @Serializable
 data class TraitSpecific(
-    val subtrait_options: TraitChoice? = null,
-    val spell_options: TraitChoice? = null,
+    val subtrait_options: JsonObject? = null,
+    val spell_options: JsonObject? = null,
     val damage_type: APIReference? = null,
     val breath_weapon: ActionContent? = null
-) {
-    override fun toString(): String {
-        return Json.encodeToString(this)
-    }
-}
-
-@Serializable
-data class TraitChoice(
-    val choose: String,
-    val type: String,
-    val from: List<APIReference>
 )
 
 @Serializable
