@@ -1,12 +1,11 @@
 package kson.models
 
-import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JsonContentPolymorphicSerializer
-import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.JsonObject
-import kotlinx.serialization.json.jsonObject
+import kson.models.common.APIReference
+import kson.models.common.Cost
+import kson.models.common.Damage
+import kson.models.common.IRef
 
 @Serializable
 data class Equipment(

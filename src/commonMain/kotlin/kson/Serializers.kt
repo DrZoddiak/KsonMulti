@@ -8,8 +8,8 @@ import kotlinx.serialization.json.intOrNull
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import kson.models.ActionAction
-import kson.models.Option
-import kson.models.OptionSet
+import kson.models.common.Option
+import kson.models.common.OptionSetType
 
 object OptionSerializer : JsonContentPolymorphicSerializer<Option>(Option::class) {
     override fun selectDeserializer(element: JsonElement): DeserializationStrategy<Option> {
@@ -30,12 +30,12 @@ object OptionSerializer : JsonContentPolymorphicSerializer<Option>(Option::class
     }
 }
 
-object SetTypeSerializer : JsonContentPolymorphicSerializer<OptionSet>(OptionSet::class) {
-    override fun selectDeserializer(element: JsonElement): DeserializationStrategy<OptionSet> {
+object SetTypeSerializer : JsonContentPolymorphicSerializer<OptionSetType>(OptionSetType::class) {
+    override fun selectDeserializer(element: JsonElement): DeserializationStrategy<OptionSetType> {
         return when {
-            "options" in element.jsonObject -> OptionSet.Array.serializer()
-            "equipment_category" in element.jsonObject -> OptionSet.Equipment.serializer()
-            "resource_list_url" in element.jsonObject -> OptionSet.ResourceList.serializer()
+            "options" in element.jsonObject -> OptionSetType.Array.serializer()
+            "equipment_category" in element.jsonObject -> OptionSetType.Equipment.serializer()
+            "resource_list_url" in element.jsonObject -> OptionSetType.ResourceList.serializer()
             else -> throw SerializationException("Unable to find serializer")
         }
     }

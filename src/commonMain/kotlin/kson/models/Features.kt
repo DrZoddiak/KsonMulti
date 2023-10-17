@@ -2,6 +2,9 @@ package kson.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kson.models.common.APIReference
+import kson.models.common.Choice
+import kson.models.common.IRef
 
 @Serializable
 data class Features(
@@ -34,7 +37,6 @@ data class FeatureSpecific(
 data class PrerequisiteFeature(
     val level: Int? = null,
     val type: String,
-
     val spell: String? = null,
     val feature: String? = null,
 )

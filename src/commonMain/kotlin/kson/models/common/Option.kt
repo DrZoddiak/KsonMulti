@@ -1,93 +1,8 @@
-package kson.models
+package kson.models.common
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kson.OptionSerializer
-import kson.SetTypeSerializer
-
-interface IRef {
-    val name: String
-    val index: String
-    val url: String
-}
-
-@Serializable
-data class APIReference(
-    override val index: String,
-    override val name: String,
-    override val url: String
-) : IRef
-
-@Serializable
-data class DefaultRequest(
-    val count: Int,
-    val results: List<APIReference>
-)
-
-@Serializable
-data class Cost(
-    val quantity: Int,
-    val unit: String
-)
-
-@Serializable
-data class DC(
-    @SerialName("dc_type")
-    val dcType: APIReference,
-    @SerialName("dc_value")
-    val dcValue: Int? = null,
-    @SerialName("success_type")
-    val successType: String? = null
-)
-
-@Serializable
-data class Damage(
-    @SerialName("damage_type")
-    val damageType: APIReference,
-    @SerialName("damage_dice")
-    val damageDice: String
-)
-
-@Serializable
-data class Choice(
-    val desc: String? = null,
-    val choose: Int,
-    val type: String,
-    val from: OptionSet,
-)
-
-@Serializable(with = SetTypeSerializer::class)
-sealed class OptionSet {
-
-    @SerialName("option_set_type")
-    abstract val optionSetType: String
-
-    @Serializable
-    @SerialName("options_array")
-    data class Array(
-        @SerialName("option_set_type")
-        override val optionSetType: String,
-        val options: List<Option>
-    ) : OptionSet()
-
-    @Serializable
-    @SerialName("equipment_category")
-    data class Equipment(
-        @SerialName("option_set_type")
-        override val optionSetType: String,
-        @SerialName("equipment_category")
-        val equipmentCategory: APIReference
-    ) : OptionSet()
-
-    @Serializable
-    @SerialName("resource_list")
-    data class ResourceList(
-        @SerialName("option_set_type")
-        override val optionSetType: String,
-        @SerialName("resource_list_url")
-        val resourceListUrl: String
-    ) : OptionSet()
-}
 
 @Serializable(with = OptionSerializer::class)
 sealed class Option {
@@ -104,11 +19,11 @@ sealed class Option {
 
     @Serializable
     data class Action(
+        @SerialName("option_type")
+        override val optionType: String,
         @SerialName("action_name")
         val actionName: String,
         val count: Int,
-        @SerialName("option_type")
-        override val optionType: String,
         val desc: String? = null,
         val type: String, //todo: enum
     ) : Option()
@@ -125,7 +40,7 @@ sealed class Option {
     data class Choice(
         @SerialName("option_type")
         override val optionType: String,
-        val choice: kson.models.Choice
+        val choice: kson.models.common.Choice
     ) : Option()
 
     @Serializable
@@ -183,7 +98,7 @@ sealed class Option {
         override val optionType: String,
         val name: String,
         val dc: DC,
-        val damage: List<kson.models.Damage>? = null
+        val damage: List<kson.models.common.Damage>? = null
     ) : Option()
 
     @Serializable

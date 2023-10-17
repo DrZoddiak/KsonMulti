@@ -2,9 +2,10 @@ package kson.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
+import kson.models.common.APIReference
+import kson.models.common.Choice
+import kson.models.common.IRef
 
 @Serializable
 data class Races(

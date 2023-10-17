@@ -3,6 +3,11 @@ package kson.models
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kson.CountSerializer
+import kson.models.common.APIReference
+import kson.models.common.Choice
+import kson.models.common.DC
+import kson.models.common.IRef
+import kson.models.common.OptionSetType
 
 @Serializable
 data class Monsters(
@@ -232,7 +237,7 @@ data class ActionDamage(
     val desc: String? = null,
     val choose: Int? = null,
     val type: String? = null,
-    val from: OptionSet? = null,
+    val from: OptionSetType? = null,
 )
 
 @Serializable

@@ -1,6 +1,7 @@
 package kson.models
 
 import kotlinx.serialization.Serializable
+import kson.models.common.IRef
 
 @Serializable
 data class WeaponProperties(

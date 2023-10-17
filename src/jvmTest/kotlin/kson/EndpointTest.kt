@@ -17,7 +17,7 @@ import kson.models.Equipment
 import kson.models.EquipmentCategories
 import kson.models.Feats
 import kson.models.Features
-import kson.models.IRef
+import kson.models.common.IRef
 import kson.models.Languages
 import kson.models.MagicItems
 import kson.models.MagicSchools

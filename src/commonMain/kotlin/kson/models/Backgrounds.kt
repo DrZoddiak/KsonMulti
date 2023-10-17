@@ -2,6 +2,9 @@ package kson.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kson.models.common.APIReference
+import kson.models.common.Choice
+import kson.models.common.IRef
 
 @Serializable
 data class Backgrounds(

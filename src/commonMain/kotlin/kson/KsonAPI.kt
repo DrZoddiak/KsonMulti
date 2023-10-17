@@ -3,8 +3,8 @@ package kson
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
-import kson.models.APIReference
-import kson.models.DefaultRequest
+import kson.models.common.APIReference
+import kson.models.common.DefaultRequest
 import kotlin.reflect.KClass
 
 class KsonApi(val client: HttpClient, val apiUrl: String = "https://www.dnd5eapi.co/api") {
