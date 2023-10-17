@@ -11,17 +11,15 @@ val client = HttpClient(CIO) {
         json(Json {
             //type keyword is used in DND API
             classDiscriminator = "#class"
-            //todo: remove for production
+
             //ignoreUnknownKeys = true
             //prettyPrint = true
             //isLenient = true
         })
     }
     engine {
-        // this: CIOEngineConfig
         maxConnectionsCount = 3000
         endpoint {
-            // this: EndpointConfig
             maxConnectionsPerRoute = 100
             pipelineMaxSize = 50
             keepAliveTime = 10000
