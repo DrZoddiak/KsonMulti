@@ -158,7 +158,9 @@ data class Speed(
     val fly: String? = null,
     val hover: Boolean? = null,
     val swim: String? = null,
-    val walk: String? = null
+    val walk: String? = null,
+    val quantity: Double? = null,
+    val unit: String? = null,
 )
 
 @Serializable

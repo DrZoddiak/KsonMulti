@@ -181,9 +181,9 @@ sealed class Option {
     data class Breath(
         @SerialName("option_type")
         override val optionType: String,
-        val name: StringOption,
+        val name: String,
         val dc: DC,
-        val damage: List<Damage>
+        val damage: List<kson.models.Damage>? = null
     ) : Option()
 
     @Serializable

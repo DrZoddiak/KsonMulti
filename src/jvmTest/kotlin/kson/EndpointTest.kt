@@ -5,6 +5,8 @@ package kson
 import io.ktor.serialization.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import kson.models.AbilityScores
 import kson.models.Alignments
 import kson.models.Backgrounds
@@ -25,6 +27,7 @@ import kson.models.Races
 import kson.models.RuleSections
 import kson.models.Rules
 import kson.models.Skills
+import kson.models.Spells
 import kson.models.Subclasses
 import kson.models.Subraces
 import kson.models.Traits
@@ -45,7 +48,11 @@ class EndpointTest {
 
     private inline fun <reified T : IRef> testEndpoint() = runTest {
         generateList<T>()
-        generatedList.map { api.fetch<T>(it).index }
+        generatedList.map {
+            val ret = api.fetch<T>(it)
+            println(Json.encodeToString(ret))
+            ret.index
+        }
             .zip(generatedList)
             .forEach { assertEquals(it.first, it.second, "${it.first} == ${it.second}") }
     }
@@ -106,6 +113,9 @@ class EndpointTest {
 
     @Test
     fun skillsEndpoint() = testEndpoint<Skills>()
+
+    @Test
+    fun spellsEndpoint() = testEndpoint<Spells>()
 
     @Test
     fun subclassesEndpoint() = testEndpoint<Subclasses>()
