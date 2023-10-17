@@ -5,12 +5,14 @@ import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
-import kson.models.Classes
 
 val client = HttpClient(CIO) {
     install(ContentNegotiation) {
         json(Json {
+            //type keyword is used in DND API
+            classDiscriminator = "#class"
             ignoreUnknownKeys = true
+            //todo: remove for production
             prettyPrint = true
             isLenient = true
         })
@@ -27,10 +29,4 @@ val client = HttpClient(CIO) {
             connectAttempts = 5
         }
     }
-}
-
-suspend fun main() {
-    val api = KsonApi(client)
-    val q = api.query<Classes>()
-    println(q)
 }

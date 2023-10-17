@@ -35,15 +35,15 @@ import kotlin.test.assertEquals
 
 class EndpointTest {
 
-    val api get() = KsonApi(client)
+    private val api get() = KsonApi(client)
 
-    lateinit var generatedList: List<String>
+    private lateinit var generatedList: List<String>
 
-    inline fun <reified T : IRef> generateList() = runTest {
+    private inline fun <reified T : IRef> generateList() = runTest {
         generatedList = api.query<T>().results.map { it.index }
     }
 
-    inline fun <reified T : IRef> testEndpoint() = runTest {
+    private inline fun <reified T : IRef> testEndpoint() = runTest {
         generateList<T>()
         generatedList.map { api.fetch<T>(it).index }
             .zip(generatedList)

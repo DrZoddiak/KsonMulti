@@ -2,7 +2,6 @@ package kson.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JsonArray
 
 @Serializable
 data class Classes(
@@ -18,9 +17,9 @@ data class Classes(
     val spellcasting: Spellcasting? = null,
     val spells: String? = null,
     @SerialName("starting_equipment")
-    val startingEquipment: List<EquipmentContent>,
+    val startingEquipment: List<StartingEquipment>,
     @SerialName("starting_equipment_options")
-    val startingEquipmentOptions: JsonArray,//todo: fix this
+    val startingEquipmentOptions: List<Choice>,
     @SerialName("proficiency_choices")
     val proficiencyChoices: List<Choice>,
     val proficiencies: List<APIReference>,
@@ -45,19 +44,12 @@ data class Info(
 
 @Serializable
 data class MultiClassing(
-    val prerequisites: List<MultiClassingPreReq>? = null,
+    val prerequisites: List<MultiClassingPreReq>,
     @SerialName("prerequisite_options")
-    val prerequisiteOptions: MultiClassingPreReqOptions? = null,
+    val prerequisiteOptions: List<Choice>,
     val proficiencies: List<APIReference>,
     @SerialName("proficiency_choices")
-    val proficiencyChoices: List<Choice>? = null
-)
-
-@Serializable
-data class MultiClassingPreReqOptions(
-    val choose: Int? = null,
-    val from: OptionSet,
-    val type: String? = null
+    val proficiencyChoices: List<Choice>
 )
 
 @Serializable
