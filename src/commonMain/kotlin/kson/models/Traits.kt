@@ -19,8 +19,10 @@ data class Traits(
     @SerialName("proficiency_choices")
     val proficiencyChoices: JsonObject? = null,
     @SerialName("trait_specific")
-    val traitSpecific: TraitSpecific? = null
-): IRef
+    val traitSpecific: TraitSpecific? = null,
+    @SerialName("language_options")
+    val languageOptions: Choice? = null,
+) : IRef
 
 
 @Serializable
@@ -39,6 +41,8 @@ data class TraitSpecific(
 data class ActionContent(
     val name: String? = null,
     val desc: String? = null,
+    @SerialName("area_of_effect")
+    val areaOfEffect: AreaOfEffect,
     val usage: Usage? = null,
     val dc: DC? = null,
     val damage: List<ActionDamageContent>
@@ -47,7 +51,7 @@ data class ActionContent(
 @Serializable
 data class Usage(
     val type: String,
-    val time: String? = null
+    val times: Int? = null
 )
 
 @Serializable

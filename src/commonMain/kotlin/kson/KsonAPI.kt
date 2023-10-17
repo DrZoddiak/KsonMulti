@@ -24,9 +24,7 @@ class KsonApi(val client: HttpClient, val apiUrl: String = "https://www.dnd5eapi
 fun KClass<*>.friendlyName(): String? = simpleName?.replace(Regex("(?<=.)([A-Z])"), "-$1")?.lowercase()
 
 //Extension Functions
-fun List<APIReference>.names() = this.joinToString(", ") { it.name }
+fun List<APIReference>.names() = joinToString(", ") { it.name }
 
 //This is mostly for testing, but leaving open for other uses.
-fun List<APIReference>.indexes() = this.joinToString("\",\n\"", "\"", "\"") { it.index }
-
-//These are for Queryable
+fun List<APIReference>.indexes() = joinToString("\",\n\"", "\"", "\"") { it.index }

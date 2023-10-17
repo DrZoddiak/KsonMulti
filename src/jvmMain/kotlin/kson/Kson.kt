@@ -11,10 +11,10 @@ val client = HttpClient(CIO) {
         json(Json {
             //type keyword is used in DND API
             classDiscriminator = "#class"
-            ignoreUnknownKeys = true
             //todo: remove for production
-            prettyPrint = true
-            isLenient = true
+            //ignoreUnknownKeys = true
+            //prettyPrint = true
+            //isLenient = true
         })
     }
     engine {

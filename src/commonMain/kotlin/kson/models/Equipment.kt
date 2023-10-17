@@ -1,7 +1,12 @@
 package kson.models
 
+import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonContentPolymorphicSerializer
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.jsonObject
 
 @Serializable
 data class Equipment(
@@ -74,11 +79,3 @@ data class Range(
     val long: Int? = null,
     val normal: Int
 )
-
-/*
-@Serializable
-data class Damage(
-    val damage_dice: String,
-    val damage_type: APIReference
-)
-*/

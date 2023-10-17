@@ -2,11 +2,7 @@ package kson.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonArray
-import kotlinx.serialization.json.JsonObject
-import java.io.Serial
+import kson.CountSerializer
 
 @Serializable
 data class Monsters(
@@ -26,11 +22,13 @@ data class Monsters(
     val subtype: String? = null,
     val alignment: String,
     @SerialName("armor_class")
-    val armorClass: JsonArray,
+    val armorClass: List<AC>,
     @SerialName("hit_points")
     val hitPoints: Int,
     @SerialName("hit_dice")
     val hitDice: String,
+    @SerialName("hit_points_roll")
+    val hitPointRoll: String,
     val forms: List<APIReference>? = null,
     val speed: Speed,
     val proficiencies: List<ProficienciesOptions>,
@@ -46,6 +44,8 @@ data class Monsters(
     val languages: String,
     @SerialName("challenge_rating")
     val challengeRating: Double,
+    @SerialName("proficiency_bonus")
+    val proficiencyBonus: Int,
     @SerialName("special_abilities")
     val specialAbilities: List<SpecialAbility>? = null,
     val actions: List<Action>? = null,
@@ -54,6 +54,17 @@ data class Monsters(
     val reactions: List<Reaction>? = null,
     val xp: Int
 ) : IRef
+
+@Serializable
+data class AC(
+    val type: String,
+    val value: Int,
+
+    val condition: APIReference? = null,
+    val spell: APIReference? = null,
+    val armor: List<APIReference>? = null,
+    val desc: String? = null,
+)
 
 @Serializable
 data class LegendaryAction(
@@ -145,7 +156,7 @@ data class Speed(
     val burrow: String? = null,
     val climb: String? = null,
     val fly: String? = null,
-    val hover: String? = null,
+    val hover: Boolean? = null,
     val swim: String? = null,
     val walk: String? = null
 )
@@ -167,16 +178,39 @@ data class Reaction(
 data class Action(
     val name: String,
     val desc: String,
+    @SerialName("action_options")
+    val actionOptions: Choice? = null,
+    val actions: List<ActionAction>,
+    val options: Choice? = null,
+    @SerialName("multiattack_type")
+    val multiattackType: String? = null,
     @SerialName("attack_bonus")
     val attackBonus: Int? = null,
-    val damage: List<ActionDamage>? = null,
     val dc: DC? = null,
-    val options: JsonObject? = null,
+    val damage: List<ActionDamage>? = null,
+    val attacks: List<ActionAttack>? = null,
     val usage: ActionUsage? = null,
-    @SerialName("attack_options")
-    val attackOptions: ActionAttackOptions? = null,
-    val attacks: List<ActionAttack>? = null
 )
+
+@Serializable(with = CountSerializer::class)
+sealed class ActionAction {
+    @Serializable
+    data class StringCount(
+        @SerialName("action_name")
+        val actionName: String,
+        val count: String,
+        val type: String,
+    ) : ActionAction()
+
+    @Serializable
+    data class IntCount(
+        @SerialName("action_name")
+        val actionName: String,
+        val count: Int,
+        val type: String,
+    ) : ActionAction()
+}
+
 
 @Serializable
 data class ActionAttack(
@@ -190,21 +224,13 @@ data class ActionDamage(
     @SerialName("damage_dice")
     val damageDice: String? = null,
     @SerialName("damage_type")
-    val damageType: APIReference? = null
-)
-
-@Serializable
-data class ActionAttackOptions(
-    val choose: Int,
-    val type: String,
-    val from: List<ActionAttack>
-)
-
-@Serializable
-data class ActionOption(
-    val name: String? = null,
-    val count: String? = null,
-    val type: String? = null
+    val damageType: APIReference? = null,
+    val dc: DC? = null,
+    //Optional Choice
+    val desc: String? = null,
+    val choose: Int? = null,
+    val type: String? = null,
+    val from: OptionSet? = null,
 )
 
 @Serializable
@@ -212,5 +238,8 @@ data class ActionUsage(
     val type: String,
     val dice: String? = null,
     @SerialName("min_value")
-    val minValue: Int? = null
+    val minValue: Int? = null,
+    val times: Int? = null,
+    @SerialName("rest_types")
+    val restTypes: List<String>? = null
 )

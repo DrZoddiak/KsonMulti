@@ -29,7 +29,9 @@ data class Races(
     @SerialName("language_desc")
     val languageDesc: String,
     val traits: List<APIReference>,
-    val subraces: List<APIReference>
+    val subraces: List<APIReference>,
+    @SerialName("language_options")
+    val languageOptions: Choice? = null,
 ) : IRef
 
 @Serializable
@@ -37,18 +39,4 @@ data class AbilityBonuses(
     @SerialName("ability_score")
     val abilityScore: APIReference,
     val bonus: Int
-)
-
-@Serializable
-data class AbilityBonusOptions(
-    val choose: Int,
-    val from: List<AbilityBonuses>,
-    val type: String
-)
-
-@Serializable
-data class StartingProficiencyOptions(
-    val choose: Int,
-    val from: List<APIReference>,
-    val type: String
 )

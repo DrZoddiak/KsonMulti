@@ -14,5 +14,5 @@ data class Languages(
     val type: String, //todo: enum
     val script: String? = null,
     @SerialName("typical_speakers")
-    val typicalSpeakers: List<String>
+    val typicalSpeakers: List<String>,
 ) : IRef

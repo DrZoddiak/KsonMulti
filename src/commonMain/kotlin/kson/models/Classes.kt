@@ -44,12 +44,12 @@ data class Info(
 
 @Serializable
 data class MultiClassing(
-    val prerequisites: List<MultiClassingPreReq>,
+    val prerequisites: List<MultiClassingPreReq>? = null,
     @SerialName("prerequisite_options")
-    val prerequisiteOptions: List<Choice>,
+    val prerequisiteOptions: Choice? = null,
     val proficiencies: List<APIReference>,
     @SerialName("proficiency_choices")
-    val proficiencyChoices: List<Choice>
+    val proficiencyChoices: List<Choice>? = null
 )
 
 @Serializable
