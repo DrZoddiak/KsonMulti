@@ -12,7 +12,6 @@ data class Skills(
     override val name: String,
     override val url: String,
     val desc: List<String>,
-    @SerialName("ability_score")
     val abilityScore: APIReference
 ) : IRef {
     companion object : Queryable

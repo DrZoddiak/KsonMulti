@@ -54,7 +54,7 @@ class EndpointTest {
             ret.index
         }
             .zip(generatedList)
-            .forEach { assertEquals(it.first, it.second, "${it.first} == ${it.second}") }
+            .map { assertEquals(it.first, it.second, "${it.first} == ${it.second}") }
     }
 
     @Test

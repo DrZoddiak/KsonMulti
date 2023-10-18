@@ -19,7 +19,6 @@ data class Features(
     val subclass: APIReference? = null,
     val parent: APIReference? = null,
     val prerequisites: List<PrerequisiteFeature>? = null,
-    @SerialName("feature_specific")
     val featureSpecific: FeatureSpecific? = null,
     val reference: String? = null
 ) : IRef {
@@ -28,15 +27,12 @@ data class Features(
 
 @Serializable
 data class FeatureSpecific(
-    @SerialName("subfeature_options")
     val subfeatureOptions: Choice? = null,
-    @SerialName("expertise_options")
     val expertiseOptions: Choice? = null,
     val invocations: List<APIReference>? = null
 )
 
 @Serializable
-@SerialName("Prerequisite")
 data class PrerequisiteFeature(
     val level: Int? = null,
     val type: String,

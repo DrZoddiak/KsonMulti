@@ -13,7 +13,6 @@ data class Languages(
     val desc: String? = null,
     val type: String, //todo: enum
     val script: String? = null,
-    @SerialName("typical_speakers")
     val typicalSpeakers: List<String>,
 ) : IRef {
     companion object : Queryable

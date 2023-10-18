@@ -8,7 +8,7 @@ import kson.models.common.Choice
 import kson.models.common.DC
 import kson.models.common.IRef
 import kson.models.common.OptionSetType
-import kson.serializer.CountSerializer
+import kson.models.common.serializer.CountSerializer
 
 @Serializable
 data class Monsters(

@@ -12,16 +12,11 @@ data class Backgrounds(
     override val index: String,
     override val name: String,
     override val url: String,
-    @SerialName("starting_proficiencies")
     val startingProficiencies: List<APIReference>,
-    @SerialName("starting_equipment")
     val startingEquipment: List<StartingEquipment>,
-    @SerialName("starting_equipment_options")
     val startingEquipmentOptions: List<Choice>,
-    @SerialName("language_options")
     val languageOptions: Choice,
     val feature: Feature,
-    @SerialName("personality_traits")
     val personalityTraits: Choice,
     val ideals: Choice,
     val bonds: Choice,

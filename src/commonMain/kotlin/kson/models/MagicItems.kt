@@ -12,7 +12,6 @@ data class MagicItems(
     override val name: String,
     override val url: String,
     val desc: List<String>,
-    @SerialName("equipment_category")
     val equipmentCategory: APIReference? = null,
     val rarity: Rarity,
     val variants: List<APIReference>,

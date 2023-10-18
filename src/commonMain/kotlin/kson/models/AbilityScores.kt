@@ -12,7 +12,6 @@ data class AbilityScores(
     override val name: String,
     override val url: String,
     val desc: List<String>,
-    @SerialName("full_name")
     val fullName: String,
     val skills: List<APIReference>
 ) : IRef {

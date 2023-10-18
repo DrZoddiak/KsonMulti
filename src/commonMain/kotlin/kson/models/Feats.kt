@@ -19,8 +19,6 @@ data class Feats(
 
 @Serializable
 data class Prerequisite(
-    @SerialName("ability_score")
     val abilityScore: APIReference,
-    @SerialName("minimum_score")
     val minimumScore: Int
 )

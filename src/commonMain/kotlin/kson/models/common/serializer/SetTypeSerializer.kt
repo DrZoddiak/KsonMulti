@@ -1,4 +1,4 @@
-package kson.serializer
+package kson.models.common.serializer
 
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.SerializationException

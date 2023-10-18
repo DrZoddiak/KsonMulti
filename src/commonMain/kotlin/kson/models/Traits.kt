@@ -2,7 +2,6 @@ package kson.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JsonObject
 import kson.models.common.Queryable
 import kson.models.common.APIReference
 import kson.models.common.Choice
@@ -19,26 +18,18 @@ data class Traits(
     val parent: APIReference? = null,
     val desc: List<String>,
     val proficiencies: List<APIReference>,
-    @SerialName("proficiency_choices")
-    val proficiencyChoices: JsonObject? = null,
-    @SerialName("trait_specific")
+    val proficiencyChoices: Choice? = null,
     val traitSpecific: TraitSpecific? = null,
-    @SerialName("language_options")
     val languageOptions: Choice? = null,
 ) : IRef {
     companion object : Queryable
 }
 
-
 @Serializable
 data class TraitSpecific(
-    @SerialName("subtrait_options")
-    val subtraitOptions: JsonObject? = null,
-    @SerialName("spell_options")
-    val spellOptions: JsonObject? = null,
-    @SerialName("damage_type")
+    val subtraitOptions: Choice? = null,
+    val spellOptions: Choice? = null,
     val damageType: APIReference? = null,
-    @SerialName("breath_weapon")
     val breathWeapon: ActionContent? = null
 )
 
@@ -46,7 +37,6 @@ data class TraitSpecific(
 data class ActionContent(
     val name: String? = null,
     val desc: String? = null,
-    @SerialName("area_of_effect")
     val areaOfEffect: AreaOfEffect,
     val usage: Usage? = null,
     val dc: DC? = null,
@@ -61,9 +51,7 @@ data class Usage(
 
 @Serializable
 data class ActionDamageContent(
-    @SerialName("damage_type")
     val damageType: APIReference,
-    @SerialName("damage_at_character_level")
     val damageAtCharacterLevel: TraitLevelDamage
 )
 

@@ -14,14 +14,10 @@ data class Subraces(
     override val url: String,
     val desc: String,
     val race: APIReference,
-    @SerialName("ability_bonuses")
     val abilityBonuses: List<AbilityBonus>,
-    @SerialName("starting_proficiencies")
     val startingProficiencies: List<APIReference>,
     val languages: List<APIReference>,
-    @SerialName("language_options")
     val languageOptions: Choice? = null,
-    @SerialName("racial_traits")
     val racialTraits: List<APIReference>
 ) : IRef {
     companion object : Queryable

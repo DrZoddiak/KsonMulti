@@ -14,9 +14,7 @@ data class Subclasses(
     val desc: List<String>,
     @SerialName("class")
     val clazz: APIReference,
-    @SerialName("subclass_flavor")
-    val subclassFavor: String,
-    @SerialName("subclass_levels")
+    val subclassFlavor: String,
     val subclassLevels: String,
     val spells: List<Spell>
 ): IRef {

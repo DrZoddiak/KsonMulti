@@ -12,27 +12,22 @@ data class Spells(
     override val name: String,
     override val url: String,
     val desc: List<String>,
-    @SerialName("higher_level")
     val higherLevel: List<String>? = null,
     val range: String,
     val components: List<String>,
     val material: String? = null,
-    @SerialName("area_of_effect")
     val areaOfEffect: AreaOfEffect? = null,
     val ritual: Boolean,
     val duration: String,
     val concentration: Boolean,
-    @SerialName("casting_time")
     val castingTime: String,
     val level: Int,
-    @SerialName("attack_type")
     val attackType: String? = null,
     val damage: DamageContent? = null,
     val dc: SpellDC? = null,
     val school: APIReference,
     val classes: List<APIReference>,
     val subclasses: List<APIReference>,
-    @SerialName("heal_at_slot_level")
     val healAtSlotLevel: SlotLevel? = null,
 ) : IRef {
     companion object : Queryable {
@@ -43,20 +38,15 @@ data class Spells(
 
 @Serializable
 data class SpellDC(
-    @SerialName("dc_type")
     val dcType: APIReference,
-    @SerialName("dc_success")
     val dcSuccess: String,
     val desc: String? = null,
 )
 
 @Serializable
 data class DamageContent(
-    @SerialName("damage_at_slot_level")
     val damageAtSlotLevel: SlotLevel? = null,
-    @SerialName("damage_at_character_level")
     val damageAtCharacterLevel: SlotLevel? = null,
-    @SerialName("damage_type")
     val damageType: APIReference? = null
 )
 

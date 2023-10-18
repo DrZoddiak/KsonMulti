@@ -13,26 +13,18 @@ data class Equipment(
     override val index: String,
     override val name: String,
     override val url: String,
-    @SerialName("armor_category")
     val armorCategory: String? = null,
-    @SerialName("armor_class")
     val armorClass: ArmorClass? = null,
     val capacity: String? = null,
-    @SerialName("category_range")
     val categoryRange: String? = null,
     val contents: List<Content>? = null,
     val desc: List<String>,
-    @SerialName("gear_category")
     val gearCategory: APIReference? = null,
-    @SerialName("equipment_category")
     val equipmentCategory: APIReference,
-    @SerialName("weapon_category")
     val weaponCategory: String? = null,
-    @SerialName("weapon_range")
     val weaponRange: String? = null,
     val cost: Cost,
     val damage: Damage? = null,
-    @SerialName("two_handed_damage")
     val twoHandedDamage: Damage? = null,
     val range: Range? = null,
     val weight: Double? = null,
@@ -40,15 +32,10 @@ data class Equipment(
     val quantity: Int? = null,
     val special: List<String>? = null,
     val speed: Speed? = null,
-    @SerialName("stealth_disadvantage")
     val stealthDisadvantage: Boolean? = null,
-    @SerialName("str_minimum")
     val strMinimum: Int? = null,
-    @SerialName("throw_range")
     val throwRange: ThrowRange? = null,
-    @SerialName("tool_category")
     val toolCategory: String? = null,
-    @SerialName("vehicle_category")
     val vehicleCategory: String? = null
 ) : IRef {
     companion object : Queryable
@@ -57,9 +44,7 @@ data class Equipment(
 @Serializable
 data class ArmorClass(
     val base: Int,
-    @SerialName("dex_bonus")
     val dexBonus: Boolean,
-    @SerialName("max_bonus")
     val maxBonus: Int? = null
 )
 
