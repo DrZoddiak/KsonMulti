@@ -61,9 +61,7 @@ data class Monsters(
     val xp: Int
 ) : IRef {
     companion object : Queryable {
-        fun challengeRating(vararg double: Double) = double.sortContent("challenge_rating")
-
-        private fun DoubleArray.sortContent(prefix: String) = "$prefix=${joinToString(",")}"
+        fun challengeRating(vararg double: Double) = query("challenge_rating", double.joinToString(","))
     }
 }
 
