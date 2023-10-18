@@ -2,6 +2,7 @@ package kson.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kson.models.common.Queryable
 import kson.models.common.APIReference
 import kson.models.common.Choice
 import kson.models.common.IRef
@@ -29,7 +30,9 @@ data class Classes(
     @SerialName("saving_throws")
     val savingThrows: List<APIReference>,
     val subclasses: List<APIReference>,
-) : IRef
+) : IRef {
+    companion object : Queryable
+}
 
 @Serializable
 data class Spellcasting(

@@ -1,6 +1,6 @@
 package kson.models.common
 
-interface IRef {
+interface IRef : Queryable {
     val name: String
     val index: String
     val url: String

@@ -19,12 +19,6 @@ class KsonApi(val client: HttpClient, val apiUrl: String = "https://www.dnd5eapi
         val link = "$apiUrl/$name?${input.lowercase()}"
         return client.get(link).body<DefaultRequest>()
     }
+
+    fun KClass<*>.friendlyName(): String? = simpleName?.replace(Regex("(?<=.)([A-Z])"), "-$1")?.lowercase()
 }
-
-fun KClass<*>.friendlyName(): String? = simpleName?.replace(Regex("(?<=.)([A-Z])"), "-$1")?.lowercase()
-
-//Extension Functions
-fun List<APIReference>.names() = joinToString(", ") { it.name }
-
-//This is mostly for testing, but leaving open for other uses.
-fun List<APIReference>.indexes() = joinToString("\",\n\"", "\"", "\"") { it.index }

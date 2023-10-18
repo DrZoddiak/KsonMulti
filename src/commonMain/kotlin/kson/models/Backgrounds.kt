@@ -2,6 +2,7 @@ package kson.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kson.models.common.Queryable
 import kson.models.common.APIReference
 import kson.models.common.Choice
 import kson.models.common.IRef
@@ -25,7 +26,9 @@ data class Backgrounds(
     val ideals: Choice,
     val bonds: Choice,
     val flaws: Choice
-) : IRef
+) : IRef {
+    companion object : Queryable
+}
 
 @Serializable
 data class StartingEquipment(

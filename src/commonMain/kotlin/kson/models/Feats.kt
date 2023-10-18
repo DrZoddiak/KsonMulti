@@ -2,6 +2,7 @@ package kson.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kson.models.common.Queryable
 import kson.models.common.APIReference
 import kson.models.common.IRef
 
@@ -12,7 +13,9 @@ data class Feats(
     override val url: String,
     val prerequisites: List<Prerequisite>,
     val desc: List<String>
-) : IRef
+) : IRef {
+    companion object : Queryable
+}
 
 @Serializable
 data class Prerequisite(

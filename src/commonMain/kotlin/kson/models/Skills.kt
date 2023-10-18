@@ -2,6 +2,7 @@ package kson.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kson.models.common.Queryable
 import kson.models.common.APIReference
 import kson.models.common.IRef
 
@@ -13,4 +14,6 @@ data class Skills(
     val desc: List<String>,
     @SerialName("ability_score")
     val abilityScore: APIReference
-) : IRef
+) : IRef {
+    companion object : Queryable
+}

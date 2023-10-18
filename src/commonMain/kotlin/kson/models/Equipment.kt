@@ -2,6 +2,7 @@ package kson.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kson.models.common.Queryable
 import kson.models.common.APIReference
 import kson.models.common.Cost
 import kson.models.common.Damage
@@ -49,7 +50,9 @@ data class Equipment(
     val toolCategory: String? = null,
     @SerialName("vehicle_category")
     val vehicleCategory: String? = null
-) : IRef
+) : IRef {
+    companion object : Queryable
+}
 
 @Serializable
 data class ArmorClass(

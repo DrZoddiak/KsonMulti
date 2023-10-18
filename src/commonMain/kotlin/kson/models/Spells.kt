@@ -2,6 +2,7 @@ package kson.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kson.models.common.Queryable
 import kson.models.common.APIReference
 import kson.models.common.IRef
 
@@ -33,7 +34,12 @@ data class Spells(
     val subclasses: List<APIReference>,
     @SerialName("heal_at_slot_level")
     val healAtSlotLevel: SlotLevel? = null,
-) : IRef
+) : IRef {
+    companion object : Queryable {
+        fun level(int: Int) = query("level", int.toString())
+        fun school(string: String) = query("school", string)
+    }
+}
 
 @Serializable
 data class SpellDC(

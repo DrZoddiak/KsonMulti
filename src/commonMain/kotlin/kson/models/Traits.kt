@@ -3,6 +3,7 @@ package kson.models
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonObject
+import kson.models.common.Queryable
 import kson.models.common.APIReference
 import kson.models.common.Choice
 import kson.models.common.DC
@@ -24,7 +25,9 @@ data class Traits(
     val traitSpecific: TraitSpecific? = null,
     @SerialName("language_options")
     val languageOptions: Choice? = null,
-) : IRef
+) : IRef {
+    companion object : Queryable
+}
 
 
 @Serializable

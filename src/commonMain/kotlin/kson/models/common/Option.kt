@@ -2,7 +2,7 @@ package kson.models.common
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kson.OptionSerializer
+import kson.serializer.OptionSerializer
 
 @Serializable(with = OptionSerializer::class)
 sealed class Option {

@@ -3,6 +3,7 @@ package kson.models
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kson.CountSerializer
+import kson.models.common.Queryable
 import kson.models.common.APIReference
 import kson.models.common.Choice
 import kson.models.common.DC
@@ -58,7 +59,13 @@ data class Monsters(
     val legendaryActions: List<LegendaryAction>? = null,
     val reactions: List<Reaction>? = null,
     val xp: Int
-) : IRef
+) : IRef {
+    companion object : Queryable {
+        fun challengeRating(vararg double: Double) = double.sortContent("challenge_rating")
+
+        private fun DoubleArray.sortContent(prefix: String) = "$prefix=${joinToString(",")}"
+    }
+}
 
 @Serializable
 data class AC(

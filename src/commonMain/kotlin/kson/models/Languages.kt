@@ -2,6 +2,7 @@ package kson.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kson.models.common.Queryable
 import kson.models.common.IRef
 
 @Serializable
@@ -14,4 +15,6 @@ data class Languages(
     val script: String? = null,
     @SerialName("typical_speakers")
     val typicalSpeakers: List<String>,
-) : IRef
+) : IRef {
+    companion object : Queryable
+}

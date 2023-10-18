@@ -1,6 +1,7 @@
 package kson.models
 
 import kotlinx.serialization.Serializable
+import kson.models.common.Queryable
 import kson.models.common.APIReference
 import kson.models.common.IRef
 
@@ -11,4 +12,6 @@ data class Rules(
     override val url: String,
     val desc: String,
     val subsections: List<APIReference>
-) : IRef
+) : IRef {
+    companion object : Queryable
+}

@@ -2,6 +2,7 @@ package kson.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kson.models.common.Queryable
 import kson.models.common.APIReference
 import kson.models.common.Choice
 import kson.models.common.IRef
@@ -21,7 +22,9 @@ data class Features(
     @SerialName("feature_specific")
     val featureSpecific: FeatureSpecific? = null,
     val reference: String? = null
-) : IRef
+) : IRef {
+    companion object : Queryable
+}
 
 @Serializable
 data class FeatureSpecific(
