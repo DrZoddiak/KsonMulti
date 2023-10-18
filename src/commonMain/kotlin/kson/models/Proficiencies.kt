@@ -13,15 +13,7 @@ data class Proficiencies(
     val type: String,
     val classes: List<APIReference>,
     val races: List<APIReference>,
-    val reference: References
+    val reference: APIReference
 ) : IRef {
     companion object : Queryable
 }
-
-@Serializable
-data class References(
-    override val name: String,
-    override val index: String,
-    override val url: String,
-    val type: String? = null
-) : IRef
