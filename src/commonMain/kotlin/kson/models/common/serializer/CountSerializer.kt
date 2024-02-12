@@ -9,6 +9,10 @@ import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import kson.models.ActionAction
 
+/**
+ * Serializer for Monster Actions.
+ * Sometimes the count is a [String] sometimes it is an [Int]
+ */
 object CountSerializer : JsonContentPolymorphicSerializer<ActionAction>(ActionAction::class) {
     override fun selectDeserializer(element: JsonElement): DeserializationStrategy<ActionAction> {
         val count = element.jsonObject["count"]?.jsonPrimitive

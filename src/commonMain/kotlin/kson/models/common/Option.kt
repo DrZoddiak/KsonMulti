@@ -20,8 +20,13 @@ sealed class Option {
         val actionName: String,
         val count: Int,
         val desc: String? = null,
-        val type: String, //todo: enum
+        val type: ActionType,
     ) : Option()
+
+    @Serializable
+    enum class ActionType {
+        melee, ranged, ability, magic
+    }
 
     @Serializable
     data class Multiple(

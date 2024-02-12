@@ -4,6 +4,9 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kson.models.common.serializer.SetTypeSerializer
 
+/**
+ * This represents an [OptionSet](https://5e-bits.github.io/docs/docs/reference/schemas#optionset)
+ */
 @Serializable(with = SetTypeSerializer::class)
 sealed class OptionSetType {
 

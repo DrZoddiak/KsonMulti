@@ -2,6 +2,9 @@ package kson.models.common
 
 import kotlinx.serialization.Serializable
 
+/**
+ * This is the concrete type of [IRef]
+ */
 @Serializable
 data class APIReference(
     override val index: String,
