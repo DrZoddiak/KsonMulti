@@ -1,6 +1,5 @@
 package kson.models
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonObject
 import kson.models.common.Queryable

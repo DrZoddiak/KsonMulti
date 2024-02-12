@@ -3,7 +3,6 @@ package kson
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
-import kson.models.common.APIReference
 import kson.models.common.DefaultRequest
 import kotlin.reflect.KClass
 
