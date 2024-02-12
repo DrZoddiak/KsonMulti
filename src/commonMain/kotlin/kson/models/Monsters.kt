@@ -27,35 +27,23 @@ data class Monsters(
     val type: String,
     val subtype: String? = null,
     val alignment: String,
-    @SerialName("armor_class")
     val armorClass: List<AC>,
-    @SerialName("hit_points")
     val hitPoints: Int,
-    @SerialName("hit_dice")
     val hitDice: String,
-    @SerialName("hit_points_roll")
-    val hitPointRoll: String,
+    val hitPointsRoll: String,
     val forms: List<APIReference>? = null,
     val speed: Speed,
     val proficiencies: List<ProficienciesOptions>,
-    @SerialName("damage_vulnerabilities")
     val damageVulnerabilities: List<String>,
-    @SerialName("damage_resistances")
     val damageResistances: List<String>,
-    @SerialName("damage_immunities")
     val damageImmunities: List<String>,
-    @SerialName("condition_immunities")
     val conditionImmunities: List<APIReference>,
     val senses: Sense,
     val languages: String,
-    @SerialName("challenge_rating")
     val challengeRating: Double,
-    @SerialName("proficiency_bonus")
     val proficiencyBonus: Int,
-    @SerialName("special_abilities")
     val specialAbilities: List<SpecialAbility>? = null,
     val actions: List<Action>? = null,
-    @SerialName("legendary_actions")
     val legendaryActions: List<LegendaryAction>? = null,
     val reactions: List<Reaction>? = null,
     val xp: Int
@@ -80,7 +68,6 @@ data class AC(
 data class LegendaryAction(
     val name: String,
     val desc: String,
-    @SerialName("attack_bonus")
     val attackBonus: Int? = null,
     val damage: List<ActionDamage>? = null,
     val dc: DC? = null
@@ -90,7 +77,6 @@ data class LegendaryAction(
 data class SpecialAbility(
     val name: String,
     val desc: String,
-    @SerialName("attack_bonus")
     val attackBonus: Int? = null,
     val damage: List<ActionDamage>? = null,
     val dc: DC? = null,
@@ -104,7 +90,6 @@ data class SpecialAbilitySpellcasting(
     val ability: APIReference,
     val dc: Int? = null,
     val modifier: Int? = null,
-    @SerialName("components_required")
     val componentsRequired: List<String>,
     val school: String? = null,
     val slots: Slots? = null,
@@ -124,7 +109,6 @@ data class SpecialAbilitySpell(
 data class SpecialAbilityUsage(
     val type: String,
     val times: Int? = null,
-    @SerialName("rest_types")
     val restTypes: List<String>? = null
 )
 
@@ -155,7 +139,6 @@ data class Slots(
 data class Sense(
     val blindsight: String? = null,
     val darkvision: String? = null,
-    @SerialName("passive_perception")
     val passivePerception: Int,
     val tremorsense: String? = null,
     val truesight: String? = null
@@ -190,13 +173,10 @@ data class Reaction(
 data class Action(
     val name: String,
     val desc: String,
-    @SerialName("action_options")
     val actionOptions: Choice? = null,
     val actions: List<ActionAction>,
     val options: Choice? = null,
-    @SerialName("multiattack_type")
     val multiattackType: String? = null,
-    @SerialName("attack_bonus")
     val attackBonus: Int? = null,
     val dc: DC? = null,
     val damage: List<ActionDamage>? = null,
@@ -208,7 +188,6 @@ data class Action(
 sealed class ActionAction {
     @Serializable
     data class StringCount(
-        @SerialName("action_name")
         val actionName: String,
         val count: String,
         val type: String,
@@ -216,7 +195,6 @@ sealed class ActionAction {
 
     @Serializable
     data class IntCount(
-        @SerialName("action_name")
         val actionName: String,
         val count: Int,
         val type: String,
@@ -233,12 +211,9 @@ data class ActionAttack(
 
 @Serializable
 data class ActionDamage(
-    @SerialName("damage_dice")
     val damageDice: String? = null,
-    @SerialName("damage_type")
     val damageType: APIReference? = null,
     val dc: DC? = null,
-    //Optional Choice
     val desc: String? = null,
     val choose: Int? = null,
     val type: String? = null,
@@ -249,9 +224,7 @@ data class ActionDamage(
 data class ActionUsage(
     val type: String,
     val dice: String? = null,
-    @SerialName("min_value")
     val minValue: Int? = null,
     val times: Int? = null,
-    @SerialName("rest_types")
     val restTypes: List<String>? = null
 )
